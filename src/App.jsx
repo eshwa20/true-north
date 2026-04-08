@@ -1,14 +1,17 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/home-page';
-import AuthPage from "./pages/login-page";
+// Ensure these paths match your folder structure exactly
+import HomePage       from './pages/home-page';
+import LoginPage      from './pages/login-page';
+import AssessmentPage from './pages/assessment-page';
+
 
 export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        {/* ADD THIS LINE BELOW */}
-        <Route path="/login" element={<AuthPage />} />
+        <Route path="/"           element={<HomePage />} />
+        <Route path="/login"      element={<LoginPage />} />
+        <Route path="/assessment" element={<AssessmentPage />} />
       </Routes>
     </Router>
   );
