@@ -394,3 +394,11 @@ html { scroll-behavior: smooth; font-size: 16px; }
   .auth-card-title { font-size: 1.65rem; }
   .auth-main { padding: 2rem 1rem; align-items: flex-start; }
 }
+
+.auth-card-icon {
+  width: 100px;
+  height: 100px;
+  background: transparent;
+  box-shadow: none;
+  margin: 0 auto 1.2rem;
+}

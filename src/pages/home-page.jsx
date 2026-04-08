@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import './home-style.css';
 
+
+
 export default function HomePage() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 

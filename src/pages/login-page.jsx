@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../assets/logo-bg.png';
 import './login-style.css';
+
+import { useNavigate } from 'react-router-dom';
 
 /* ── REGEX VALIDATORS ───────────────────────────────────────── */
 // Must mirror login-insert.py exactly
@@ -69,6 +72,7 @@ function FieldMsg({ msg, ok }) {
 
 /* ── MAIN COMPONENT ─────────────────────────────────────────── */
 export default function LoginPage() {
+  const navigate = useNavigate();
   const [tab, setTab]         = useState('login');
   const [showPw, setShowPw]   = useState(false);
   const [showCpw, setShowCpw] = useState(false);
@@ -147,10 +151,8 @@ export default function LoginPage() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.detail || 'Login failed.');
-      setAlert({ type: 'success', msg: `Welcome back, ${data.user.username}! Redirecting…` });
-      // TODO: store token & redirect — e.g.:
-      // localStorage.setItem('token', data.token);
-      // navigate('/dashboard');
+      setAlert({ type: 'success', msg: `Welcome back, ${data.user.username}!` });
+      setTimeout(() => navigate('/assessment'), 1200);
     } catch (err) {
       setAlert({ type: 'error', msg: err.message });
     } finally {
@@ -226,7 +228,7 @@ export default function LoginPage() {
           {/* Header */}
           <div className="auth-card-header">
             <div className="auth-card-icon">
-              <i className={`fas fa-${tab === 'login' ? 'compass' : 'user-plus'}`} />
+              <img src={logo} alt="TrueNorth" style={{ width: '150px', height: '150px', objectFit: 'contain' }} />
             </div>
             <h1 className="auth-card-title">
               {tab === 'login' ? 'Welcome back' : 'Get started'}
