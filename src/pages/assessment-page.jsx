@@ -91,90 +91,221 @@ const PERSONALITY_QUESTIONS = [
   },
 ];
 
+// ── CAREER POOL ──────────────────────────────────────────────
+const CAREER_POOL = [
+  // ── Technology ──
+  { title: 'Software Engineer',           domains: ['Technology', 'Engineering'],                   strength: ['analytical'] },
+  { title: 'Frontend Developer',          domains: ['Technology', 'Design'],                        strength: ['creative', 'analytical'] },
+  { title: 'Backend Developer',           domains: ['Technology', 'Engineering'],                   strength: ['analytical'] },
+  { title: 'Full-Stack Developer',        domains: ['Technology', 'Engineering'],                   strength: ['analytical'] },
+  { title: 'Mobile App Developer',        domains: ['Technology', 'Engineering'],                   strength: ['analytical', 'creative'] },
+  { title: 'DevOps Engineer',             domains: ['Technology', 'Engineering'],                   strength: ['analytical'] },
+  { title: 'Cloud Architect',             domains: ['Technology', 'Engineering'],                   strength: ['analytical'] },
+  { title: 'Cybersecurity Analyst',       domains: ['Technology', 'Engineering'],                   strength: ['analytical'] },
+  { title: 'Blockchain Developer',        domains: ['Technology', 'Engineering', 'Finance'],        strength: ['analytical'] },
+  { title: 'Embedded Systems Engineer',   domains: ['Technology', 'Engineering'],                   strength: ['analytical'] },
+  { title: 'QA Engineer',                 domains: ['Technology', 'Engineering'],                   strength: ['analytical'] },
+  { title: 'Product Manager',             domains: ['Technology', 'Leadership'],                    strength: ['communication'] },
+  { title: 'Technical Program Manager',   domains: ['Technology', 'Leadership'],                    strength: ['communication', 'analytical'] },
+  { title: 'Solutions Architect',         domains: ['Technology', 'Engineering', 'Leadership'],     strength: ['analytical', 'communication'] },
+  // ── Data & AI ──
+  { title: 'Data Scientist',              domains: ['Data', 'Technology', 'Science'],               strength: ['analytical'] },
+  { title: 'Data Analyst',                domains: ['Data', 'Technology'],                          strength: ['analytical'] },
+  { title: 'Data Engineer',               domains: ['Data', 'Technology', 'Engineering'],           strength: ['analytical'] },
+  { title: 'ML Engineer',                 domains: ['Data', 'Technology'],                          strength: ['analytical'] },
+  { title: 'AI Research Scientist',       domains: ['Data', 'Science', 'Technology'],               strength: ['analytical'] },
+  { title: 'Business Intelligence Analyst', domains: ['Data', 'Finance', 'Leadership'],             strength: ['analytical'] },
+  { title: 'Quantitative Analyst',        domains: ['Data', 'Finance', 'Science'],                  strength: ['analytical'] },
+  // ── Design & Creative ──
+  { title: 'UI/UX Designer',              domains: ['Design', 'Technology'],                        strength: ['creative'] },
+  { title: 'Graphic Designer',            domains: ['Design'],                                      strength: ['creative'] },
+  { title: 'Brand Identity Designer',     domains: ['Design', 'Marketing'],                         strength: ['creative'] },
+  { title: 'Product Designer',            domains: ['Design', 'Technology'],                        strength: ['creative'] },
+  { title: 'Motion Graphics Designer',    domains: ['Design', 'Film', 'Technology'],                strength: ['creative'] },
+  { title: 'Illustrator',                 domains: ['Design', 'Film'],                              strength: ['creative'] },
+  { title: 'Art Director',                domains: ['Design', 'Film', 'Marketing'],                 strength: ['creative'] },
+  { title: 'Creative Director',           domains: ['Design', 'Film', 'Music', 'Marketing'],        strength: ['creative'] },
+  { title: 'Interior Designer',           domains: ['Design'],                                      strength: ['creative'] },
+  { title: 'Fashion Designer',            domains: ['Design'],                                      strength: ['creative'] },
+  { title: 'Industrial Designer',         domains: ['Design', 'Engineering'],                       strength: ['creative', 'analytical'] },
+  { title: '3D Artist / Modeler',         domains: ['Design', 'Film', 'GameDesign'],                strength: ['creative'] },
+  { title: 'Character Designer',          domains: ['Design', 'GameDesign', 'Film'],                strength: ['creative'] },
+  { title: 'Visual Effects Artist',       domains: ['Design', 'Film', 'Technology'],                strength: ['creative'] },
+  // ── Film & Media ──
+  { title: 'Filmmaker / Director',        domains: ['Film', 'Design'],                              strength: ['creative'] },
+  { title: 'Screenwriter',                domains: ['Film', 'Writing'],                             strength: ['creative'] },
+  { title: 'Video Editor',                domains: ['Film', 'Technology'],                          strength: ['creative'] },
+  { title: 'Cinematographer',             domains: ['Film', 'Design'],                              strength: ['creative'] },
+  { title: 'Documentary Filmmaker',       domains: ['Film', 'Writing', 'Social'],                   strength: ['creative', 'communication'] },
+  { title: 'Storyboard Artist',           domains: ['Film', 'Design'],                              strength: ['creative'] },
+  { title: 'Production Designer',         domains: ['Film', 'Design'],                              strength: ['creative'] },
+  { title: 'Film Producer',               domains: ['Film', 'Leadership'],                          strength: ['communication'] },
+  { title: 'Casting Director',            domains: ['Film', 'Social'],                              strength: ['communication', 'empathy'] },
+  { title: 'Photographer',                domains: ['Film', 'Design'],                              strength: ['creative'] },
+  { title: 'Photo Editor / Retoucher',    domains: ['Film', 'Design', 'Technology'],                strength: ['creative'] },
+  { title: 'YouTube Content Creator',     domains: ['Film', 'Writing', 'Marketing'],                strength: ['creative', 'communication'] },
+  { title: 'Podcast Producer',            domains: ['Film', 'Music', 'Writing'],                    strength: ['creative', 'communication'] },
+  // ── Music ──
+  { title: 'Music Producer',              domains: ['Music', 'Technology'],                         strength: ['creative'] },
+  { title: 'Recording Artist / Singer',   domains: ['Music'],                                       strength: ['creative', 'communication'] },
+  { title: 'Audio Engineer',              domains: ['Music', 'Technology', 'Engineering'],          strength: ['analytical', 'creative'] },
+  { title: 'Music Composer',              domains: ['Music', 'Film'],                               strength: ['creative'] },
+  { title: 'Film Score Composer',         domains: ['Music', 'Film'],                               strength: ['creative'] },
+  { title: 'Sound Designer',              domains: ['Music', 'Film', 'GameDesign'],                 strength: ['creative'] },
+  { title: 'Music Therapist',             domains: ['Music', 'Social', 'Education'],                strength: ['empathy'] },
+  { title: 'Artist Manager',              domains: ['Music', 'Leadership', 'Marketing'],            strength: ['communication'] },
+  { title: 'Music Marketing Manager',     domains: ['Music', 'Marketing'],                          strength: ['communication'] },
+  { title: 'DJ / Live Performer',         domains: ['Music'],                                       strength: ['creative'] },
+  { title: 'Music Teacher / Educator',    domains: ['Music', 'Education'],                          strength: ['empathy', 'communication'] },
+  { title: 'Music Video Director',        domains: ['Music', 'Film'],                               strength: ['creative'] },
+  { title: 'Lyricist / Songwriter',       domains: ['Music', 'Writing'],                            strength: ['creative'] },
+  { title: 'A&R Manager',                 domains: ['Music', 'Leadership'],                         strength: ['communication'] },
+  { title: 'Music Journalist / Critic',   domains: ['Music', 'Writing'],                            strength: ['communication', 'creative'] },
+  { title: 'Concert / Tour Manager',      domains: ['Music', 'Leadership'],                         strength: ['communication'] },
+  { title: 'Music Licensing Manager',     domains: ['Music', 'Finance', 'Leadership'],              strength: ['analytical', 'communication'] },
+  { title: 'Foley Artist',                domains: ['Music', 'Film'],                               strength: ['creative'] },
+  // ── Writing & Content ──
+  { title: 'Author / Novelist',           domains: ['Writing'],                                     strength: ['creative'] },
+  { title: 'Journalist / Reporter',       domains: ['Writing', 'Social'],                           strength: ['communication'] },
+  { title: 'Content Strategist',          domains: ['Writing', 'Marketing'],                        strength: ['communication', 'creative'] },
+  { title: 'Copywriter',                  domains: ['Writing', 'Marketing'],                        strength: ['creative', 'communication'] },
+  { title: 'Technical Writer',            domains: ['Writing', 'Technology'],                       strength: ['communication', 'analytical'] },
+  { title: 'Editor / Proofreader',        domains: ['Writing'],                                     strength: ['analytical', 'communication'] },
+  { title: 'Speechwriter',                domains: ['Writing', 'Leadership'],                       strength: ['communication', 'creative'] },
+  { title: 'Grant Writer',                domains: ['Writing', 'Social'],                           strength: ['communication'] },
+  { title: 'UX Writer',                   domains: ['Writing', 'Design', 'Technology'],             strength: ['communication', 'creative'] },
+  { title: 'Blogger / Newsletter Writer', domains: ['Writing', 'Marketing'],                        strength: ['creative', 'communication'] },
+  { title: 'Poet / Creative Writer',      domains: ['Writing'],                                     strength: ['creative'] },
+  { title: 'Script / Dialogue Writer',    domains: ['Writing', 'Film'],                             strength: ['creative'] },
+  { title: 'Social Media Writer',         domains: ['Writing', 'Marketing'],                        strength: ['communication', 'creative'] },
+  { title: 'Academic / Research Writer',  domains: ['Writing', 'Science'],                          strength: ['analytical', 'communication'] },
+  { title: 'SEO Content Writer',          domains: ['Writing', 'Marketing', 'Technology'],          strength: ['analytical', 'communication'] },
+  { title: 'Literary Agent',              domains: ['Writing', 'Leadership'],                       strength: ['communication'] },
+  { title: 'Book Editor / Publisher',     domains: ['Writing', 'Leadership'],                       strength: ['communication', 'analytical'] },
+  { title: 'Translator / Interpreter',    domains: ['Writing', 'Social'],                           strength: ['communication'] },
+  { title: 'Subtitler / Localizer',       domains: ['Writing', 'Film', 'Technology'],               strength: ['communication'] },
+  // ── Marketing & Communication ──
+  { title: 'Marketing Manager',           domains: ['Marketing', 'Leadership'],                     strength: ['communication'] },
+  { title: 'Digital Marketing Specialist',domains: ['Marketing', 'Technology'],                     strength: ['analytical', 'communication'] },
+  { title: 'SEO / SEM Specialist',        domains: ['Marketing', 'Technology', 'Data'],             strength: ['analytical'] },
+  { title: 'Social Media Manager',        domains: ['Marketing', 'Writing'],                        strength: ['communication', 'creative'] },
+  { title: 'PR Specialist',               domains: ['Marketing', 'Writing', 'Leadership'],          strength: ['communication'] },
+  { title: 'Brand Strategist',            domains: ['Marketing', 'Design'],                         strength: ['creative', 'communication'] },
+  { title: 'Performance Marketer',        domains: ['Marketing', 'Data'],                           strength: ['analytical'] },
+  { title: 'Influencer / Content Creator',domains: ['Marketing', 'Film', 'Writing'],               strength: ['creative', 'communication'] },
+  { title: 'Email Marketing Specialist',  domains: ['Marketing', 'Writing'],                        strength: ['communication', 'analytical'] },
+  { title: 'Market Research Analyst',     domains: ['Marketing', 'Data'],                           strength: ['analytical'] },
+  { title: 'Event Manager',               domains: ['Marketing', 'Leadership'],                     strength: ['communication'] },
+  // ── Business, Finance & Leadership ──
+  { title: 'Financial Analyst',           domains: ['Finance', 'Data'],                             strength: ['analytical'] },
+  { title: 'Investment Banker',           domains: ['Finance', 'Data', 'Leadership'],               strength: ['analytical'] },
+  { title: 'Portfolio Manager',           domains: ['Finance', 'Data'],                             strength: ['analytical'] },
+  { title: 'Venture Capitalist',          domains: ['Finance', 'Leadership'],                       strength: ['analytical', 'communication'] },
+  { title: 'Accountant / CPA',            domains: ['Finance'],                                     strength: ['analytical'] },
+  { title: 'Actuary',                     domains: ['Finance', 'Data', 'Science'],                  strength: ['analytical'] },
+  { title: 'Management Consultant',       domains: ['Leadership', 'Data'],                          strength: ['analytical', 'communication'] },
+  { title: 'Entrepreneur / Founder',      domains: ['Leadership', 'Marketing'],                     strength: ['communication'] },
+  { title: 'Operations Manager',          domains: ['Leadership', 'Engineering'],                   strength: ['analytical', 'communication'] },
+  { title: 'Human Resources Manager',     domains: ['Leadership', 'Social'],                        strength: ['empathy', 'communication'] },
+  { title: 'Supply Chain Manager',        domains: ['Leadership', 'Engineering', 'Data'],           strength: ['analytical'] },
+  // ── Education & Social ──
+  { title: 'Teacher / Educator',          domains: ['Education', 'Social'],                         strength: ['empathy', 'communication'] },
+  { title: 'School Counselor',            domains: ['Education', 'Social'],                         strength: ['empathy'] },
+  { title: 'Curriculum Designer',         domains: ['Education', 'Writing'],                        strength: ['creative', 'communication'] },
+  { title: 'E-Learning Developer',        domains: ['Education', 'Technology'],                     strength: ['creative', 'analytical'] },
+  { title: 'Corporate Trainer',           domains: ['Education', 'Leadership'],                     strength: ['communication', 'empathy'] },
+  { title: 'Social Worker',               domains: ['Social', 'Education'],                         strength: ['empathy'] },
+  { title: 'Community Manager',           domains: ['Social', 'Marketing'],                         strength: ['empathy', 'communication'] },
+  { title: 'Non-Profit Program Director', domains: ['Social', 'Leadership'],                        strength: ['empathy', 'communication'] },
+  { title: 'Life Coach',                  domains: ['Social', 'Education'],                         strength: ['empathy', 'communication'] },
+  // ── Science & Engineering ──
+  { title: 'Research Scientist',          domains: ['Science', 'Data'],                             strength: ['analytical'] },
+  { title: 'Biomedical Engineer',         domains: ['Science', 'Engineering'],                      strength: ['analytical'] },
+  { title: 'Environmental Scientist',     domains: ['Science', 'Social'],                           strength: ['analytical'] },
+  { title: 'Psychologist / Counselor',    domains: ['Social', 'Science'],                           strength: ['empathy'] },
+  { title: 'Civil Engineer',              domains: ['Engineering'],                                  strength: ['analytical'] },
+  { title: 'Mechanical Engineer',         domains: ['Engineering'],                                  strength: ['analytical'] },
+  { title: 'Robotics Engineer',           domains: ['Engineering', 'Technology'],                   strength: ['analytical'] },
+  { title: 'Aerospace Engineer',          domains: ['Engineering', 'Science'],                      strength: ['analytical'] },
+  // ── Gaming ──
+  { title: 'Game Developer',              domains: ['GameDesign', 'Technology'],                    strength: ['creative', 'analytical'] },
+  { title: 'Game Designer',               domains: ['GameDesign', 'Design'],                        strength: ['creative'] },
+  { title: 'Narrative Designer',          domains: ['GameDesign', 'Writing'],                       strength: ['creative'] },
+  { title: 'Level Designer',              domains: ['GameDesign', 'Design'],                        strength: ['creative', 'analytical'] },
+  { title: 'Game Artist',                 domains: ['GameDesign', 'Design'],                        strength: ['creative'] },
+  { title: 'Esports Manager',             domains: ['GameDesign', 'Leadership'],                    strength: ['communication'] },
+  { title: 'Game Tester / QA',            domains: ['GameDesign', 'Technology'],                    strength: ['analytical'] },
+  { title: 'VR/AR Developer',             domains: ['GameDesign', 'Technology', 'Design'],          strength: ['creative', 'analytical'] },
+];
+
 // ── CAREER MAPPING ───────────────────────────────────────────
+// FIX 2 (part of fix): sorting by score guarantees true best match
 function getCareerRecommendations(likedDomains, personalityAnswers) {
   const domainCount = {};
   likedDomains.forEach(d => { domainCount[d] = (domainCount[d] || 0) + 1; });
 
-  const strength   = personalityAnswers.strength    || 'analytical';
-  const teamwork   = personalityAnswers.teamwork     || 'solo';
-  const risk       = personalityAnswers.risk         || 'analyze';
+  const strength = personalityAnswers.strength || 'analytical';
+  const teamwork = personalityAnswers.teamwork  || 'solo';
+  const risk     = personalityAnswers.risk      || 'analyze';
 
-  const careerPool = [
-    { title: 'Software Engineer',        domains: ['Technology','Engineering'],   strength: ['analytical'],         match: 0 },
-    { title: 'UI/UX Designer',           domains: ['Design','Technology'],         strength: ['creative'],           match: 0 },
-    { title: 'Data Scientist',           domains: ['Data','Technology','Science'], strength: ['analytical'],         match: 0 },
-    { title: 'Product Manager',          domains: ['Technology','Leadership'],     strength: ['communication'],      match: 0 },
-    { title: 'Content Strategist',       domains: ['Writing','Marketing'],         strength: ['communication','creative'], match: 0 },
-    { title: 'ML Engineer',              domains: ['Data','Technology'],           strength: ['analytical'],         match: 0 },
-    { title: 'Creative Director',        domains: ['Design','Film','Music'],       strength: ['creative'],           match: 0 },
-    { title: 'Research Scientist',       domains: ['Science','Data'],              strength: ['analytical'],         match: 0 },
-    { title: 'Marketing Manager',        domains: ['Marketing','Leadership'],      strength: ['communication'],      match: 0 },
-    { title: 'Game Developer',           domains: ['GameDesign','Technology'],     strength: ['creative','analytical'],match: 0 },
-    { title: 'Financial Analyst',        domains: ['Finance','Data'],              strength: ['analytical'],         match: 0 },
-    { title: 'Educator / Trainer',       domains: ['Education','Social'],          strength: ['empathy','communication'],match: 0 },
-    { title: 'Filmmaker / Director',     domains: ['Film','Design'],               strength: ['creative'],           match: 0 },
-    { title: 'Music Producer',           domains: ['Music','Technology'],          strength: ['creative'],           match: 0 },
-    { title: 'Entrepreneur',             domains: ['Leadership','Marketing'],      strength: ['communication'],      match: 0 },
-  ];
-
-  careerPool.forEach(career => {
+  const scored = CAREER_POOL.map(career => {
     let score = 0;
-    career.domains.forEach(d => { if (domainCount[d]) score += domainCount[d] * 20; });
+
+    // Domain overlap score — must have at least one liked domain to appear
+    let domainHits = 0;
+    career.domains.forEach(d => {
+      if (domainCount[d]) {
+        score += domainCount[d] * 20;
+        domainHits++;
+      }
+    });
+
+    // FIX 3: If the user has NO liked domains matching this career, skip it entirely
+    if (domainHits === 0) return { ...career, match: 0 };
+
+    // Personality strength bonus
     if (career.strength.includes(strength)) score += 25;
+
+    // Teamwork/risk bonuses
     if (teamwork === 'lead' && career.domains.includes('Leadership')) score += 10;
     if (risk === 'risk' && career.title === 'Entrepreneur') score += 15;
-    career.match = Math.min(score, 99);
+
+    return { ...career, match: Math.min(score, 99) };
   });
 
-  return careerPool
-    .sort((a, b) => b.match - a.match)
-    .slice(0, 5)
+  const results = scored
     .filter(c => c.match > 0)
-    .map(c => ({ ...c, match: c.match < 50 ? 50 + Math.floor(Math.random() * 30) : c.match }));
+    .sort((a, b) => b.match - a.match)
+    .slice(0, 6)
+    .map(c => ({
+      ...c,
+      // Only pad scores that are low — keep real scores intact
+      match: c.match < 50 ? 50 + Math.floor(Math.random() * 20) : c.match,
+    }));
+
+  return results;
 }
 
-// ── GPT APTITUDE QUESTION GENERATOR ─────────────────────────
+// ── GEMINI APTITUDE GENERATOR (via FastAPI backend) ──────────
 async function generateAptitudeQuestions(career, interests, personality) {
-  const prompt = `You are an expert aptitude test designer.
-Generate exactly 10 aptitude test questions for a student interested in becoming a "${career}".
-
-Student profile:
-- Top interests: ${interests.join(', ')}
-- Personality strengths: ${JSON.stringify(personality)}
-
-Rules:
-1. Every question must directly relate to the "${career}" role
-2. Mix difficulty: 3 easy (10pts), 4 medium (20pts), 3 hard (30pts)
-3. Each question is timed: easy=30s, medium=45s, hard=60s
-4. All questions must be MCQ with exactly 4 options
-5. One clearly correct answer per question
-6. Test practical thinking, not just memorization
-
-Return ONLY valid JSON in this exact format, no extra text:
-{
-  "questions": [
-    {
-      "id": 1,
-      "question": "question text",
-      "options": ["Option A", "Option B", "Option C", "Option D"],
-      "correct": 0,
-      "difficulty": "easy",
-      "points": 10,
-      "time": 30,
-      "skill": "skill being tested"
-    }
-  ]
-}`;
-
   const res = await fetch('/api/generate-aptitude', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ prompt, career, interests, personality }),
+    body: JSON.stringify({ career, interests, personality }),
   });
 
-  if (!res.ok) throw new Error('Failed to generate questions');
+  if (!res.ok) {
+    // Surface the actual error message from the backend
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err?.detail || `Server error ${res.status}`);
+  }
+
   const data = await res.json();
+
+  if (!data.questions || !Array.isArray(data.questions) || data.questions.length === 0) {
+    throw new Error('No questions returned from server.');
+  }
+
   return data.questions;
 }
 
@@ -270,39 +401,38 @@ export default function AssessmentPage() {
   const navigate = useNavigate();
 
   // Global state
-  const [phase, setPhase]   = useState('interest'); // interest|personality|career|aptitude|loading|results
+  const [phase, setPhase]       = useState('interest');
   const [progress, setProgress] = useState(0);
 
   // Interest state
-  const [cardIndex, setCardIndex]   = useState(0);
-  const [liked, setLiked]           = useState([]);
-  const [disliked, setDisliked]     = useState([]);
+  const [cardIndex, setCardIndex] = useState(0);
+  const [liked, setLiked]         = useState([]);
+  const [disliked, setDisliked]   = useState([]);
 
   // Personality state
-  const [pqIndex, setPqIndex]           = useState(0);
+  const [pqIndex, setPqIndex]                       = useState(0);
   const [personalityAnswers, setPersonalityAnswers] = useState({});
 
   // Career state
-  const [careers, setCareers]           = useState([]);
+  const [careers, setCareers]               = useState([]);
   const [selectedCareer, setSelectedCareer] = useState(null);
 
   // Aptitude state
-  const [aptQuestions, setAptQuestions] = useState([]);
-  const [aptIndex, setAptIndex]         = useState(0);
-  const [aptAnswers, setAptAnswers]     = useState([]);
-  const [aptScore, setAptScore]         = useState(0);
-  const [aptLoading, setAptLoading]     = useState(false);
-  const [aptError, setAptError]         = useState('');
+  const [aptQuestions, setAptQuestions]     = useState([]);
+  const [aptIndex, setAptIndex]             = useState(0);
+  const [aptAnswers, setAptAnswers]         = useState([]);
+  const [aptScore, setAptScore]             = useState(0);
+  const [aptLoading, setAptLoading]         = useState(false);
+  const [aptError, setAptError]             = useState('');
   const [selectedOption, setSelectedOption] = useState(null);
-  const [answered, setAnswered]         = useState(false);
+  const [answered, setAnswered]             = useState(false);
 
   // Results state
   const [results, setResults] = useState(null);
 
   // ── Interest handlers ──
   const handleLike = () => {
-    const card = INTEREST_CARDS[cardIndex];
-    setLiked(p => [...p, card]);
+    setLiked(p => [...p, INTEREST_CARDS[cardIndex]]);
     nextCard();
   };
   const handleDislike = () => {
@@ -347,7 +477,8 @@ export default function AssessmentPage() {
       setProgress(80);
       setPhase('aptitude');
     } catch (e) {
-      setAptError('Failed to generate questions. Please try again.');
+      console.error('Question generation error:', e);
+      setAptError(`Failed to generate questions: ${e.message}. Please try again.`);
       setPhase('career');
     } finally {
       setAptLoading(false);
@@ -385,10 +516,9 @@ export default function AssessmentPage() {
   const finishAptitude = () => {
     const totalPoints = aptQuestions.reduce((s, q) => s + q.points, 0);
     const pct = Math.round((aptScore / totalPoints) * 100);
-    const likedDomains = liked.map(c => c.domain);
     setResults({
       career:      selectedCareer,
-      aptScore:    aptScore,
+      aptScore,
       aptTotal:    totalPoints,
       aptPct:      pct,
       topCareers:  careers.slice(0, 3),
@@ -399,14 +529,18 @@ export default function AssessmentPage() {
     setPhase('results');
   };
 
+  // ── FIX 2: Best match = highest match % (not first in array) ──
+  const bestMatchIndex = careers.reduce(
+    (bestIdx, c, i) => (c.match > careers[bestIdx].match ? i : bestIdx),
+    0
+  );
+
   // ── RENDER ──────────────────────────────────────────────────
   return (
     <div className="assess-page">
-      {/* Orbs */}
       <div className="assess-orb assess-orb-1" />
       <div className="assess-orb assess-orb-2" />
 
-      {/* Header */}
       <header className="assess-header">
         <div className="assess-header-inner">
           <div className="assess-logo">
@@ -440,7 +574,6 @@ export default function AssessmentPage() {
               {cardIndex < INTEREST_CARDS.length ? (
                 <>
                   <div className="interest-stack">
-                    {/* Ghost cards behind */}
                     {INTEREST_CARDS.slice(cardIndex + 1, cardIndex + 3).reverse().map((c, i) => (
                       <div key={c.id} className="interest-card-ghost" style={{ transform: `scale(${0.92 + i * 0.04}) translateY(${(1 - i) * 12}px)`, zIndex: i }} />
                     ))}
@@ -489,7 +622,6 @@ export default function AssessmentPage() {
                 <div className="personality-progress-fill" style={{ width: `${((pqIndex) / PERSONALITY_QUESTIONS.length) * 100}%` }} />
               </div>
               <p className="personality-qcount">{pqIndex + 1} of {PERSONALITY_QUESTIONS.length}</p>
-
               <div className="personality-card">
                 <h2 className="personality-question">{PERSONALITY_QUESTIONS[pqIndex].question}</h2>
                 <div className="personality-options">
@@ -519,12 +651,23 @@ export default function AssessmentPage() {
               <p className="assess-sub">Based on your interests and personality. Select one to take a tailored aptitude test.</p>
             </div>
 
-            {aptError && <div className="assess-error"><i className="fas fa-triangle-exclamation" /> {aptError}</div>}
+            {aptError && (
+              <div className="assess-error">
+                <i className="fas fa-triangle-exclamation" /> {aptError}
+              </div>
+            )}
 
             <div className="career-grid">
               {careers.map((career, i) => (
-                <button key={career.title} className={`career-card ${i === 0 ? 'career-card-top' : ''}`} onClick={() => handleCareerSelect(career)}>
-                  {i === 0 && <div className="career-top-badge">🏆 Best Match</div>}
+                // FIX 2: Badge goes to actual highest-score career, not just first card
+                <button
+                  key={career.title}
+                  className={`career-card ${i === bestMatchIndex ? 'career-card-top' : ''}`}
+                  onClick={() => handleCareerSelect(career)}
+                >
+                  {i === bestMatchIndex && (
+                    <div className="career-top-badge">🏆 Best Match</div>
+                  )}
                   <div className="career-card-header">
                     <h3 className="career-card-title">{career.title}</h3>
                     <span className="career-card-pct">{career.match}%</span>
@@ -544,7 +687,7 @@ export default function AssessmentPage() {
           </div>
         )}
 
-        {/* ── PHASE: LOADING (AI generating questions) ── */}
+        {/* ── PHASE: LOADING ── */}
         {phase === 'loading' && (
           <div className="assess-loading">
             <div className="loading-ring">
@@ -578,7 +721,6 @@ export default function AssessmentPage() {
                 const diffColors = { easy: 'var(--c-green)', medium: 'var(--c-gold)', hard: 'var(--c-red)' };
                 return (
                   <div className="apt-card">
-                    {/* Top bar */}
                     <div className="apt-card-top">
                       <div className="apt-meta">
                         <span className="apt-qnum">Q{aptIndex + 1} / {aptQuestions.length}</span>
@@ -591,7 +733,6 @@ export default function AssessmentPage() {
                       <AptitudeTimer key={aptIndex} seconds={q.time} onExpire={handleTimerExpire} />
                     </div>
 
-                    {/* Score strip */}
                     <div className="apt-score-strip">
                       <span>Score: <strong>{aptScore}</strong> pts</span>
                       <div className="apt-q-progress">
@@ -599,10 +740,8 @@ export default function AssessmentPage() {
                       </div>
                     </div>
 
-                    {/* Question */}
                     <h2 className="apt-question">{q.question}</h2>
 
-                    {/* Options */}
                     <div className="apt-options">
                       {q.options.map((opt, idx) => {
                         let cls = 'apt-option';
@@ -623,7 +762,6 @@ export default function AssessmentPage() {
                       })}
                     </div>
 
-                    {/* Next button */}
                     {answered && (
                       <button className="apt-next" onClick={handleNextQuestion}>
                         {aptIndex >= aptQuestions.length - 1 ? 'See Results' : 'Next Question'}
@@ -646,7 +784,6 @@ export default function AssessmentPage() {
               <p className="results-sub">Based on your interests, personality and aptitude test</p>
             </div>
 
-            {/* Aptitude score card */}
             <div className="results-score-card">
               <div className="results-score-ring">
                 <svg viewBox="0 0 120 120">
@@ -674,7 +811,6 @@ export default function AssessmentPage() {
               </div>
             </div>
 
-            {/* Top career matches */}
             <div className="results-block">
               <h3 className="results-block-title"><i className="fas fa-trophy" /> Top Career Matches</h3>
               <div className="results-careers">
@@ -691,7 +827,6 @@ export default function AssessmentPage() {
               </div>
             </div>
 
-            {/* Interest summary */}
             <div className="results-block">
               <h3 className="results-block-title"><i className="fas fa-heart" /> Your Interests</h3>
               <div className="results-interests">
@@ -701,12 +836,14 @@ export default function AssessmentPage() {
               </div>
             </div>
 
-            {/* CTAs */}
             <div className="results-ctas">
               <button className="results-cta-primary" onClick={() => navigate('/dashboard')}>
                 <i className="fas fa-compass" /> Go to Dashboard
               </button>
-              <button className="results-cta-secondary" onClick={() => { setPhase('interest'); setCardIndex(0); setLiked([]); setDisliked([]); setPqIndex(0); setPersonalityAnswers({}); setAptIndex(0); setAptScore(0); setProgress(0); }}>
+              <button className="results-cta-secondary" onClick={() => {
+                setPhase('interest'); setCardIndex(0); setLiked([]); setDisliked([]);
+                setPqIndex(0); setPersonalityAnswers({}); setAptIndex(0); setAptScore(0); setProgress(0);
+              }}>
                 <i className="fas fa-rotate-left" /> Retake Assessment
               </button>
             </div>
