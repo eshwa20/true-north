@@ -6,11 +6,17 @@ from pydantic import BaseModel
 from jose import jwt
 from login_insert import register_user, login_user
 
+from fastapi import FastAPI
+from aptitude_gen import router as aptitude_router
+
+
 JWT_SECRET         = os.getenv("JWT_SECRET", "change-me-in-production")
 JWT_ALGORITHM      = "HS256"
 JWT_EXPIRE_MINUTES = 60
 
 app = FastAPI(title="TrueNorth API")
+
+app.include_router(aptitude_router)
 
 app.add_middleware(
     CORSMiddleware,
