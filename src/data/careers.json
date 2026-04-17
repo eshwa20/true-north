@@ -1,0 +1,485 @@
+{
+  "careers": [
+    {
+      "id": "software_engineer",
+      "title": "Software Engineer",
+      "category": "Technology",
+      "description": "Design, develop, and maintain software applications and systems.",
+      "required_interests": ["coding", "ai_ml", "hardware"],
+      "personality_match": {
+        "work_style": ["independent", "collaborative"],
+        "problem_solving": ["analytical", "creative"],
+        "energy_source": ["creating", "ideas"],
+        "risk_tolerance": ["calculated", "adaptive"]
+      },
+      "education_paths": ["Computer Science", "Software Engineering", "IT"],
+      "salary_range": { "entry": "$70,000", "mid": "$110,000", "senior": "$160,000" },
+      "growth_rate": "22% (Much faster than average)",
+      "skills": ["Programming", "Problem Solving", "System Design", "Algorithms"]
+    },
+    {
+      "id": "data_scientist",
+      "title": "Data Scientist",
+      "category": "Technology",
+      "description": "Analyze complex data to help organizations make better decisions.",
+      "required_interests": ["ai_ml", "coding", "biology"],
+      "personality_match": {
+        "work_style": ["independent", "structured"],
+        "problem_solving": ["analytical"],
+        "energy_source": ["ideas", "achieving"],
+        "risk_tolerance": ["calculated"]
+      },
+      "education_paths": ["Data Science", "Statistics", "Mathematics", "Computer Science"],
+      "salary_range": { "entry": "$85,000", "mid": "$120,000", "senior": "$165,000" },
+      "growth_rate": "36% (Much faster than average)",
+      "skills": ["Python", "Statistics", "Machine Learning", "SQL", "Data Visualization"]
+    },
+    {
+      "id": "cybersecurity_analyst",
+      "title": "Cybersecurity Analyst",
+      "category": "Technology",
+      "description": "Protect computer systems and networks from digital attacks and threats.",
+      "required_interests": ["networking", "coding", "hardware"],
+      "personality_match": {
+        "work_style": ["independent", "structured"],
+        "problem_solving": ["analytical", "practical"],
+        "energy_source": ["achieving", "ideas"],
+        "risk_tolerance": ["calculated", "cautious"]
+      },
+      "education_paths": ["Cybersecurity", "Computer Science", "Information Technology"],
+      "salary_range": { "entry": "$72,000", "mid": "$105,000", "senior": "$150,000" },
+      "growth_rate": "32% (Much faster than average)",
+      "skills": ["Network Security", "Ethical Hacking", "Risk Assessment", "Incident Response"]
+    },
+    {
+      "id": "ai_engineer",
+      "title": "AI/ML Engineer",
+      "category": "Technology",
+      "description": "Build and deploy machine learning models and AI-powered systems.",
+      "required_interests": ["ai_ml", "coding", "robotics"],
+      "personality_match": {
+        "work_style": ["independent", "collaborative"],
+        "problem_solving": ["analytical", "creative"],
+        "energy_source": ["ideas", "creating"],
+        "risk_tolerance": ["calculated", "bold"]
+      },
+      "education_paths": ["Computer Science", "Mathematics", "AI/ML specialization"],
+      "salary_range": { "entry": "$95,000", "mid": "$140,000", "senior": "$200,000" },
+      "growth_rate": "40% (Exceptional growth)",
+      "skills": ["Python", "TensorFlow", "Deep Learning", "Math & Statistics"]
+    },
+    {
+      "id": "robotics_engineer",
+      "title": "Robotics Engineer",
+      "category": "Technology",
+      "description": "Design, build, and maintain robotic systems and automation technologies.",
+      "required_interests": ["robotics", "hardware", "coding"],
+      "personality_match": {
+        "work_style": ["collaborative", "structured"],
+        "problem_solving": ["analytical", "practical"],
+        "energy_source": ["creating", "ideas"],
+        "risk_tolerance": ["calculated"]
+      },
+      "education_paths": ["Robotics", "Mechanical Engineering", "Electrical Engineering"],
+      "salary_range": { "entry": "$75,000", "mid": "$115,000", "senior": "$155,000" },
+      "growth_rate": "15% (Faster than average)",
+      "skills": ["Mechanical Design", "Programming", "Control Systems", "CAD"]
+    },
+    {
+      "id": "ui_ux_designer",
+      "title": "UI/UX Designer",
+      "category": "Design",
+      "description": "Create intuitive and engaging user experiences for digital products.",
+      "required_interests": ["ui_ux", "graphic_design", "animation"],
+      "personality_match": {
+        "work_style": ["collaborative", "flexible"],
+        "problem_solving": ["creative"],
+        "energy_source": ["creating", "social"],
+        "risk_tolerance": ["adaptive"]
+      },
+      "education_paths": ["Design", "HCI", "Psychology", "Fine Arts"],
+      "salary_range": { "entry": "$65,000", "mid": "$95,000", "senior": "$130,000" },
+      "growth_rate": "16% (Faster than average)",
+      "skills": ["User Research", "Wireframing", "Prototyping", "Visual Design"]
+    },
+    {
+      "id": "graphic_designer",
+      "title": "Graphic Designer",
+      "category": "Design",
+      "description": "Create visual content for print, digital, and brand communication.",
+      "required_interests": ["graphic_design", "ui_ux", "photography"],
+      "personality_match": {
+        "work_style": ["independent", "flexible"],
+        "problem_solving": ["creative"],
+        "energy_source": ["creating", "ideas"],
+        "risk_tolerance": ["adaptive", "bold"]
+      },
+      "education_paths": ["Graphic Design", "Fine Arts", "Visual Communication"],
+      "salary_range": { "entry": "$45,000", "mid": "$72,000", "senior": "$100,000" },
+      "growth_rate": "3% (Steady)",
+      "skills": ["Adobe Suite", "Typography", "Branding", "Layout Design"]
+    },
+    {
+      "id": "animator",
+      "title": "Animator / Motion Designer",
+      "category": "Design",
+      "description": "Bring characters, stories, and ideas to life through animation and visual effects.",
+      "required_interests": ["animation", "graphic_design", "gaming"],
+      "personality_match": {
+        "work_style": ["independent", "collaborative"],
+        "problem_solving": ["creative"],
+        "energy_source": ["creating", "ideas"],
+        "risk_tolerance": ["adaptive"]
+      },
+      "education_paths": ["Animation", "Fine Arts", "Digital Media", "Film"],
+      "salary_range": { "entry": "$50,000", "mid": "$80,000", "senior": "$120,000" },
+      "growth_rate": "5% (Average)",
+      "skills": ["3D Modeling", "After Effects", "Storyboarding", "Rigging"]
+    },
+    {
+      "id": "fashion_designer",
+      "title": "Fashion Designer",
+      "category": "Design",
+      "description": "Create clothing, accessories, and footwear collections for brands and consumers.",
+      "required_interests": ["fashion", "graphic_design", "photography"],
+      "personality_match": {
+        "work_style": ["independent", "collaborative"],
+        "problem_solving": ["creative"],
+        "energy_source": ["creating", "social"],
+        "risk_tolerance": ["bold", "adaptive"]
+      },
+      "education_paths": ["Fashion Design", "Textile Design", "Fine Arts"],
+      "salary_range": { "entry": "$40,000", "mid": "$75,000", "senior": "$120,000" },
+      "growth_rate": "3% (Steady)",
+      "skills": ["Sketching", "Pattern Making", "Textile Knowledge", "Trend Forecasting"]
+    },
+    {
+      "id": "product_manager",
+      "title": "Product Manager",
+      "category": "Business",
+      "description": "Guide product strategy and lead cross-functional teams to deliver successful products.",
+      "required_interests": ["entrepreneurship", "marketing", "management"],
+      "personality_match": {
+        "work_style": ["collaborative", "structured"],
+        "problem_solving": ["collaborative", "analytical"],
+        "energy_source": ["achieving", "social"],
+        "risk_tolerance": ["calculated"],
+        "leadership": ["lead"]
+      },
+      "education_paths": ["Business", "Engineering", "Design", "MBA"],
+      "salary_range": { "entry": "$90,000", "mid": "$130,000", "senior": "$180,000" },
+      "growth_rate": "10% (Faster than average)",
+      "skills": ["Strategy", "Communication", "Data Analysis", "User Empathy"]
+    },
+    {
+      "id": "marketing_manager",
+      "title": "Marketing Manager",
+      "category": "Business",
+      "description": "Develop and execute marketing strategies to promote products and brands.",
+      "required_interests": ["marketing", "sales", "entrepreneurship"],
+      "personality_match": {
+        "work_style": ["collaborative", "flexible"],
+        "problem_solving": ["creative", "collaborative"],
+        "energy_source": ["social", "achieving"],
+        "risk_tolerance": ["calculated", "bold"]
+      },
+      "education_paths": ["Marketing", "Business", "Communications"],
+      "salary_range": { "entry": "$60,000", "mid": "$100,000", "senior": "$150,000" },
+      "growth_rate": "10% (Faster than average)",
+      "skills": ["Strategy", "Analytics", "Content Creation", "Social Media"]
+    },
+    {
+      "id": "entrepreneur",
+      "title": "Entrepreneur / Startup Founder",
+      "category": "Business",
+      "description": "Build and scale innovative businesses from the ground up.",
+      "required_interests": ["entrepreneurship", "management", "marketing"],
+      "personality_match": {
+        "work_style": ["flexible", "collaborative"],
+        "problem_solving": ["creative", "analytical"],
+        "energy_source": ["achieving", "ideas"],
+        "risk_tolerance": ["bold"],
+        "leadership": ["lead"]
+      },
+      "education_paths": ["Business", "Engineering", "MBA", "Self-taught"],
+      "salary_range": { "entry": "Variable", "mid": "$80,000+", "senior": "Unlimited" },
+      "growth_rate": "Limitless potential",
+      "skills": ["Leadership", "Sales", "Fundraising", "Vision Setting"]
+    },
+    {
+      "id": "financial_analyst",
+      "title": "Financial Analyst",
+      "category": "Business",
+      "description": "Evaluate financial data to guide investment decisions and business strategy.",
+      "required_interests": ["finance", "management", "entrepreneurship"],
+      "personality_match": {
+        "work_style": ["independent", "structured"],
+        "problem_solving": ["analytical"],
+        "energy_source": ["achieving", "ideas"],
+        "risk_tolerance": ["calculated", "cautious"]
+      },
+      "education_paths": ["Finance", "Accounting", "Economics", "MBA"],
+      "salary_range": { "entry": "$65,000", "mid": "$100,000", "senior": "$150,000" },
+      "growth_rate": "9% (Average)",
+      "skills": ["Financial Modeling", "Excel", "Investment Analysis", "Reporting"]
+    },
+    {
+      "id": "hr_manager",
+      "title": "HR Manager",
+      "category": "Business",
+      "description": "Recruit talent, build company culture, and manage employee relations.",
+      "required_interests": ["management", "psychology", "education"],
+      "personality_match": {
+        "work_style": ["collaborative", "structured"],
+        "problem_solving": ["collaborative", "practical"],
+        "energy_source": ["social", "achieving"],
+        "risk_tolerance": ["calculated"],
+        "leadership": ["support", "lead"]
+      },
+      "education_paths": ["Human Resources", "Business", "Psychology"],
+      "salary_range": { "entry": "$55,000", "mid": "$85,000", "senior": "$130,000" },
+      "growth_rate": "7% (Average)",
+      "skills": ["Recruitment", "Communication", "Labor Law", "Employee Relations"]
+    },
+    {
+      "id": "research_scientist",
+      "title": "Research Scientist",
+      "category": "Science",
+      "description": "Conduct research to advance knowledge in scientific fields.",
+      "required_interests": ["biology", "chemistry", "physics", "environmental"],
+      "personality_match": {
+        "work_style": ["independent", "structured"],
+        "problem_solving": ["analytical"],
+        "energy_source": ["ideas"],
+        "risk_tolerance": ["cautious", "calculated"]
+      },
+      "education_paths": ["Biology", "Chemistry", "Physics", "PhD required"],
+      "salary_range": { "entry": "$70,000", "mid": "$100,000", "senior": "$140,000" },
+      "growth_rate": "8% (Average)",
+      "skills": ["Research Methods", "Data Analysis", "Scientific Writing", "Lab Techniques"]
+    },
+    {
+      "id": "doctor",
+      "title": "Medical Doctor",
+      "category": "Science",
+      "description": "Diagnose and treat illnesses, injuries, and other medical conditions.",
+      "required_interests": ["medical", "biology", "chemistry"],
+      "personality_match": {
+        "work_style": ["structured", "collaborative"],
+        "problem_solving": ["analytical", "practical"],
+        "energy_source": ["social", "achieving"],
+        "risk_tolerance": ["calculated", "cautious"]
+      },
+      "education_paths": ["MBBS", "MD", "Medical Specialization"],
+      "salary_range": { "entry": "$150,000", "mid": "$220,000", "senior": "$350,000+" },
+      "growth_rate": "3% (Steady demand)",
+      "skills": ["Clinical Diagnosis", "Patient Care", "Medical Knowledge", "Decision Making"]
+    },
+    {
+      "id": "environmental_scientist",
+      "title": "Environmental Scientist",
+      "category": "Science",
+      "description": "Study the environment and develop solutions to environmental problems.",
+      "required_interests": ["environmental", "biology", "chemistry"],
+      "personality_match": {
+        "work_style": ["independent", "collaborative"],
+        "problem_solving": ["analytical", "practical"],
+        "energy_source": ["ideas", "achieving"],
+        "risk_tolerance": ["calculated"]
+      },
+      "education_paths": ["Environmental Science", "Biology", "Ecology", "Geography"],
+      "salary_range": { "entry": "$55,000", "mid": "$80,000", "senior": "$115,000" },
+      "growth_rate": "11% (Faster than average)",
+      "skills": ["Fieldwork", "Data Analysis", "Environmental Law", "GIS Mapping"]
+    },
+    {
+      "id": "pharmacist",
+      "title": "Pharmacist",
+      "category": "Science",
+      "description": "Dispense medications and advise patients and healthcare providers on drug use.",
+      "required_interests": ["chemistry", "medical", "biology"],
+      "personality_match": {
+        "work_style": ["structured", "collaborative"],
+        "problem_solving": ["analytical", "practical"],
+        "energy_source": ["achieving", "social"],
+        "risk_tolerance": ["cautious", "calculated"]
+      },
+      "education_paths": ["Pharmacy (PharmD)", "Chemistry", "Biochemistry"],
+      "salary_range": { "entry": "$110,000", "mid": "$128,000", "senior": "$145,000" },
+      "growth_rate": "5% (Average)",
+      "skills": ["Pharmacology", "Patient Counseling", "Drug Safety", "Chemistry"]
+    },
+    {
+      "id": "journalist",
+      "title": "Journalist / Content Writer",
+      "category": "Humanities",
+      "description": "Research, investigate, and report stories across print, digital, and broadcast media.",
+      "required_interests": ["writing", "languages", "psychology"],
+      "personality_match": {
+        "work_style": ["independent", "flexible"],
+        "problem_solving": ["creative", "analytical"],
+        "energy_source": ["ideas", "social"],
+        "risk_tolerance": ["bold", "adaptive"]
+      },
+      "education_paths": ["Journalism", "English", "Mass Communication", "Political Science"],
+      "salary_range": { "entry": "$38,000", "mid": "$65,000", "senior": "$110,000" },
+      "growth_rate": "4% (Stable)",
+      "skills": ["Research", "Writing", "Interviewing", "Storytelling"]
+    },
+    {
+      "id": "psychologist",
+      "title": "Psychologist / Counselor",
+      "category": "Humanities",
+      "description": "Study human behavior and mental processes to help people improve their wellbeing.",
+      "required_interests": ["psychology", "education", "writing"],
+      "personality_match": {
+        "work_style": ["independent", "collaborative"],
+        "problem_solving": ["analytical", "collaborative"],
+        "energy_source": ["social", "ideas"],
+        "risk_tolerance": ["cautious", "calculated"]
+      },
+      "education_paths": ["Psychology", "Counseling", "Social Work", "PhD"],
+      "salary_range": { "entry": "$55,000", "mid": "$85,000", "senior": "$130,000" },
+      "growth_rate": "13% (Faster than average)",
+      "skills": ["Active Listening", "Empathy", "Research", "Therapy Techniques"]
+    },
+    {
+      "id": "teacher",
+      "title": "Teacher / Educator",
+      "category": "Humanities",
+      "description": "Inspire and educate students at all levels, from primary to higher education.",
+      "required_interests": ["education", "psychology", "writing"],
+      "personality_match": {
+        "work_style": ["collaborative", "structured"],
+        "problem_solving": ["collaborative", "creative"],
+        "energy_source": ["social", "achieving"],
+        "risk_tolerance": ["cautious", "calculated"],
+        "leadership": ["lead", "support"]
+      },
+      "education_paths": ["Education (B.Ed)", "Subject Specialization", "M.Ed"],
+      "salary_range": { "entry": "$40,000", "mid": "$65,000", "senior": "$90,000" },
+      "growth_rate": "5% (Steady)",
+      "skills": ["Curriculum Design", "Communication", "Patience", "Classroom Management"]
+    },
+    {
+      "id": "lawyer",
+      "title": "Lawyer / Advocate",
+      "category": "Humanities",
+      "description": "Advise clients on legal rights, represent them in court, and draft legal documents.",
+      "required_interests": ["law", "writing", "psychology"],
+      "personality_match": {
+        "work_style": ["independent", "structured"],
+        "problem_solving": ["analytical", "collaborative"],
+        "energy_source": ["achieving", "ideas"],
+        "risk_tolerance": ["calculated", "bold"],
+        "leadership": ["lead"]
+      },
+      "education_paths": ["LLB", "LLM", "Specialization in Law"],
+      "salary_range": { "entry": "$65,000", "mid": "$130,000", "senior": "$250,000+" },
+      "growth_rate": "10% (Faster than average)",
+      "skills": ["Legal Research", "Argumentation", "Negotiation", "Writing"]
+    },
+    {
+      "id": "translator",
+      "title": "Translator / Linguist",
+      "category": "Humanities",
+      "description": "Convert written or spoken content from one language to another with cultural accuracy.",
+      "required_interests": ["languages", "writing", "education"],
+      "personality_match": {
+        "work_style": ["independent", "flexible"],
+        "problem_solving": ["creative", "analytical"],
+        "energy_source": ["ideas", "achieving"],
+        "risk_tolerance": ["adaptive"]
+      },
+      "education_paths": ["Languages", "Linguistics", "Translation Studies"],
+      "salary_range": { "entry": "$45,000", "mid": "$65,000", "senior": "$95,000" },
+      "growth_rate": "4% (Stable)",
+      "skills": ["Multilingual Fluency", "Cultural Awareness", "Writing", "Attention to Detail"]
+    },
+    {
+      "id": "musician",
+      "title": "Musician / Music Producer",
+      "category": "Arts",
+      "description": "Create, perform, or produce music across genres for live and studio settings.",
+      "required_interests": ["music", "writing_creative", "animation"],
+      "personality_match": {
+        "work_style": ["independent", "flexible"],
+        "problem_solving": ["creative"],
+        "energy_source": ["creating", "social"],
+        "risk_tolerance": ["bold", "adaptive"]
+      },
+      "education_paths": ["Music", "Music Production", "Conservatory", "Self-taught"],
+      "salary_range": { "entry": "$30,000", "mid": "$65,000", "senior": "$150,000+" },
+      "growth_rate": "Variable (performance-based)",
+      "skills": ["Instrument Mastery", "Music Theory", "DAW Software", "Performance"]
+    },
+    {
+      "id": "actor",
+      "title": "Actor / Performer",
+      "category": "Arts",
+      "description": "Portray characters in film, television, theater, and digital media.",
+      "required_interests": ["acting", "writing_creative", "music"],
+      "personality_match": {
+        "work_style": ["flexible", "collaborative"],
+        "problem_solving": ["creative"],
+        "energy_source": ["social", "creating"],
+        "risk_tolerance": ["bold"]
+      },
+      "education_paths": ["Drama", "Fine Arts", "Film Studies", "Acting School"],
+      "salary_range": { "entry": "$20,000", "mid": "$60,000", "senior": "$500,000+" },
+      "growth_rate": "Variable (competitive)",
+      "skills": ["Acting Techniques", "Improvisation", "Voice Training", "Memorization"]
+    },
+    {
+      "id": "game_developer",
+      "title": "Game Developer",
+      "category": "Arts",
+      "description": "Design and build video games for consoles, PC, and mobile platforms.",
+      "required_interests": ["gaming", "coding", "animation"],
+      "personality_match": {
+        "work_style": ["collaborative", "flexible"],
+        "problem_solving": ["creative", "analytical"],
+        "energy_source": ["creating", "ideas"],
+        "risk_tolerance": ["adaptive", "calculated"]
+      },
+      "education_paths": ["Game Design", "Computer Science", "Animation", "Art"],
+      "salary_range": { "entry": "$60,000", "mid": "$95,000", "senior": "$140,000" },
+      "growth_rate": "10% (Faster than average)",
+      "skills": ["Unity/Unreal", "Programming", "3D Modeling", "Storytelling"]
+    },
+    {
+      "id": "chef",
+      "title": "Chef / Culinary Artist",
+      "category": "Arts",
+      "description": "Create culinary experiences, lead kitchens, and innovate in food and flavor.",
+      "required_interests": ["culinary", "writing_creative", "acting"],
+      "personality_match": {
+        "work_style": ["structured", "collaborative"],
+        "problem_solving": ["creative", "practical"],
+        "energy_source": ["creating", "achieving"],
+        "risk_tolerance": ["bold", "adaptive"]
+      },
+      "education_paths": ["Culinary Arts", "Hospitality Management", "Apprenticeship"],
+      "salary_range": { "entry": "$35,000", "mid": "$70,000", "senior": "$130,000+" },
+      "growth_rate": "15% (Faster than average)",
+      "skills": ["Culinary Techniques", "Menu Planning", "Kitchen Management", "Creativity"]
+    },
+    {
+      "id": "author",
+      "title": "Author / Creative Writer",
+      "category": "Arts",
+      "description": "Craft books, scripts, poetry, and stories for entertainment and education.",
+      "required_interests": ["writing_creative", "writing", "psychology"],
+      "personality_match": {
+        "work_style": ["independent", "flexible"],
+        "problem_solving": ["creative"],
+        "energy_source": ["ideas", "creating"],
+        "risk_tolerance": ["adaptive", "bold"]
+      },
+      "education_paths": ["English Literature", "Creative Writing", "Journalism"],
+      "salary_range": { "entry": "$30,000", "mid": "$65,000", "senior": "$200,000+" },
+      "growth_rate": "4% (Stable)",
+      "skills": ["Storytelling", "Research", "Character Development", "Editing"]
+    }
+  ]
+}

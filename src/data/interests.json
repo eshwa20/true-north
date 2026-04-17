@@ -1,0 +1,86 @@
+{
+  "categories": [
+    {
+      "id": "tech",
+      "name": "Technology & Engineering",
+      "icon": "fa-microchip",
+      "color": "#3B82F6",
+      "items": [
+        { "id": "coding", "label": "Building apps & websites", "icon": "fa-code" },
+        { "id": "ai_ml", "label": "Artificial Intelligence & Machine Learning", "icon": "fa-brain" },
+        { "id": "robotics", "label": "Robotics & Automation", "icon": "fa-robot" },
+        { "id": "hardware", "label": "Computer Hardware & Electronics", "icon": "fa-microchip" },
+        { "id": "networking", "label": "Networks & Cybersecurity", "icon": "fa-shield" }
+      ]
+    },
+    {
+      "id": "creative",
+      "name": "Creative & Design",
+      "icon": "fa-palette",
+      "color": "#EC4899",
+      "items": [
+        { "id": "graphic_design", "label": "Graphic Design & Illustration", "icon": "fa-pen-nib" },
+        { "id": "ui_ux", "label": "UI/UX & Product Design", "icon": "fa-mobile-screen" },
+        { "id": "animation", "label": "Animation & 3D Modeling", "icon": "fa-film" },
+        { "id": "photography", "label": "Photography & Videography", "icon": "fa-camera" },
+        { "id": "fashion", "label": "Fashion & Textile Design", "icon": "fa-shirt" }
+      ]
+    },
+    {
+      "id": "business",
+      "name": "Business & Leadership",
+      "icon": "fa-chart-line",
+      "color": "#10B981",
+      "items": [
+        { "id": "entrepreneurship", "label": "Entrepreneurship & Startups", "icon": "fa-rocket" },
+        { "id": "marketing", "label": "Marketing & Brand Strategy", "icon": "fa-bullhorn" },
+        { "id": "finance", "label": "Finance & Investment", "icon": "fa-coins" },
+        { "id": "management", "label": "Project & Team Management", "icon": "fa-users" },
+        { "id": "sales", "label": "Sales & Business Development", "icon": "fa-handshake" }
+      ]
+    },
+    {
+      "id": "science",
+      "name": "Science & Research",
+      "icon": "fa-flask",
+      "color": "#8B5CF6",
+      "items": [
+        { "id": "biology", "label": "Biology & Life Sciences", "icon": "fa-dna" },
+        { "id": "chemistry", "label": "Chemistry & Materials", "icon": "fa-flask" },
+        { "id": "physics", "label": "Physics & Astronomy", "icon": "fa-atom" },
+        { "id": "environmental", "label": "Environmental Science", "icon": "fa-leaf" },
+        { "id": "medical", "label": "Medicine & Healthcare", "icon": "fa-hospital" }
+      ]
+    },
+    {
+      "id": "humanities",
+      "name": "Humanities & Social Sciences",
+      "icon": "fa-book",
+      "color": "#F59E0B",
+      "items": [
+        { "id": "writing", "label": "Writing & Journalism", "icon": "fa-feather" },
+        { "id": "psychology", "label": "Psychology & Counseling", "icon": "fa-brain" },
+        { "id": "education", "label": "Teaching & Education", "icon": "fa-chalkboard-user" },
+        { "id": "law", "label": "Law & Public Policy", "icon": "fa-gavel" },
+        { "id": "languages", "label": "Languages & Translation", "icon": "fa-language" }
+      ]
+    },
+    {
+      "id": "arts",
+      "name": "Arts & Entertainment",
+      "icon": "fa-music",
+      "color": "#EF4444",
+      "items": [
+        { "id": "music", "label": "Music Production & Performance", "icon": "fa-music" },
+        { "id": "acting", "label": "Acting & Theater", "icon": "fa-masks-theater" },
+        { "id": "gaming", "label": "Game Design & Development", "icon": "fa-gamepad" },
+        { "id": "writing_creative", "label": "Creative Writing & Storytelling", "icon": "fa-pencil" },
+        { "id": "culinary", "label": "Culinary Arts & Food Science", "icon": "fa-utensils" }
+      ]
+    }
+  ],
+  "selectionMethod": "grid",
+  "minSelections": 5,
+  "maxSelections": 15,
+  "instructions": "Select all interests that appeal to you. Choose at least 5 to get accurate recommendations."
+}

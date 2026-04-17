@@ -1,0 +1,97 @@
+{
+  "ageGroups": [
+    {
+      "id": "10-15",
+      "label": "10-15 years",
+      "description": "Exploring interests and discovering passions",
+      "questions": [
+        {
+          "id": "school_subjects",
+          "question": "Which school subjects do you enjoy the most?",
+          "type": "multi-select",
+          "options": ["Mathematics", "Science", "English/Literature", "History", "Art", "Music", "Physical Education", "Computer Studies"],
+          "maxSelections": 3
+        },
+        {
+          "id": "hobbies",
+          "question": "What do you like to do in your free time?",
+          "type": "multi-select",
+          "options": ["Reading", "Drawing/Painting", "Playing sports", "Video games", "Building things", "Cooking/Baking", "Playing music", "Coding"],
+          "maxSelections": 4
+        },
+        {
+          "id": "dream_job",
+          "question": "If you could be anything when you grow up, what would it be?",
+          "type": "open-ended"
+        }
+      ],
+      "recommendationStyle": "broad"
+    },
+    {
+      "id": "15-18",
+      "label": "15-18 years",
+      "description": "Planning for higher education and career paths",
+      "questions": [
+        {
+          "id": "stream",
+          "question": "Which stream are you currently pursuing or planning to pursue?",
+          "type": "single-select",
+          "options": ["Science (PCM)", "Science (PCB)", "Commerce", "Humanities/Arts", "Vocational", "Undecided"]
+        },
+        {
+          "id": "higher_education",
+          "question": "What type of higher education are you considering?",
+          "type": "single-select",
+          "options": ["Engineering", "Medical", "Law", "Design", "Business Management", "Pure Sciences", "Arts & Humanities", "Unsure"]
+        },
+        {
+          "id": "exam_prep",
+          "question": "Are you preparing for any competitive exams?",
+          "type": "multi-select",
+          "options": ["JEE", "NEET", "CLAT", "NID/NIFT", "CUET", "SAT", "None"],
+          "maxSelections": 3
+        },
+        {
+          "id": "skills",
+          "question": "What skills would you like to develop?",
+          "type": "multi-select",
+          "options": ["Coding", "Public Speaking", "Creative Writing", "Data Analysis", "Design", "Leadership", "Foreign Language"],
+          "maxSelections": 4
+        }
+      ],
+      "recommendationStyle": "focused"
+    },
+    {
+      "id": "18+",
+      "label": "18+ years",
+      "description": "Career advancement and specialization",
+      "questions": [
+        {
+          "id": "education_level",
+          "question": "What is your highest level of education?",
+          "type": "single-select",
+          "options": ["High School", "Bachelor's Degree", "Master's Degree", "PhD", "Professional Certification"]
+        },
+        {
+          "id": "current_field",
+          "question": "What field are you currently in or pursuing?",
+          "type": "single-select",
+          "options": ["Technology & IT", "Business & Finance", "Healthcare & Medicine", "Education", "Engineering", "Arts & Design", "Science & Research", "Law", "Marketing & Sales", "Other"]
+        },
+        {
+          "id": "experience_years",
+          "question": "How many years of work experience do you have?",
+          "type": "single-select",
+          "options": ["0-2 years", "3-5 years", "6-10 years", "10+ years"]
+        },
+        {
+          "id": "career_goal",
+          "question": "What is your primary career goal?",
+          "type": "single-select",
+          "options": ["Switch to a new field", "Advance in current field", "Specialize in a niche", "Start my own business", "Find better work-life balance", "Increase earning potential"]
+        }
+      ],
+      "recommendationStyle": "specialized"
+    }
+  ]
+}

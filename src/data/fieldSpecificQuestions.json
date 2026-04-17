@@ -1,0 +1,73 @@
+{
+  "Technology & IT": {
+    "questions": [
+      {
+        "id": "tech_role",
+        "question": "Which type of role interests you most?",
+        "type": "single-select",
+        "options": ["Software Development", "Data Science & Analytics", "Cybersecurity", "Cloud & Infrastructure", "Product Management", "IT Support & Operations", "AI & Machine Learning"]
+      },
+      {
+        "id": "tech_skills",
+        "question": "What technical skills do you currently have?",
+        "type": "multi-select",
+        "options": ["Programming", "Database Management", "Networking", "Cloud Platforms", "Data Analysis", "Web Development", "Mobile Development", "DevOps"],
+        "maxSelections": 5
+      },
+      {
+        "id": "preferred_company",
+        "question": "What type of company do you prefer?",
+        "type": "single-select",
+        "options": ["FAANG/Big Tech", "Startup", "Mid-size company", "Enterprise/Corporate", "Freelance/Contract", "Non-profit"]
+      }
+    ]
+  },
+  "Business & Finance": {
+    "questions": [
+      {
+        "id": "business_role",
+        "question": "Which area of business interests you most?",
+        "type": "single-select",
+        "options": ["Finance & Accounting", "Marketing", "Sales", "Human Resources", "Operations", "Strategy & Consulting", "Entrepreneurship"]
+      },
+      {
+        "id": "industry",
+        "question": "Which industry do you prefer?",
+        "type": "single-select",
+        "options": ["Technology", "Healthcare", "Finance/Banking", "Retail", "Manufacturing", "Media & Entertainment", "Consulting"]
+      }
+    ]
+  },
+  "Healthcare & Medicine": {
+    "questions": [
+      {
+        "id": "healthcare_role",
+        "question": "What type of healthcare role interests you?",
+        "type": "single-select",
+        "options": ["Clinical (Doctor/Nurse)", "Research", "Healthcare Administration", "Public Health", "Allied Health (Therapy/Technician)", "Pharmaceutical"]
+      },
+      {
+        "id": "patient_interaction",
+        "question": "How much direct patient interaction do you prefer?",
+        "type": "single-select",
+        "options": ["High - Daily patient care", "Moderate - Some patient interaction", "Low - Mostly behind the scenes", "None - Research/Administrative"]
+      }
+    ]
+  },
+  "Arts & Design": {
+    "questions": [
+      {
+        "id": "design_field",
+        "question": "Which design field interests you most?",
+        "type": "single-select",
+        "options": ["Graphic Design", "UI/UX Design", "Product/Industrial Design", "Fashion Design", "Interior Design", "Animation & Motion", "Game Design"]
+      },
+      {
+        "id": "work_type",
+        "question": "What type of design work do you prefer?",
+        "type": "single-select",
+        "options": ["Agency work (variety of clients)", "In-house (single brand)", "Freelance", "Studio/Collective"]
+      }
+    ]
+  }
+}
