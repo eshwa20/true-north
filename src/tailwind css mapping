@@ -1,0 +1,497 @@
+# TrueNorth · CSS → Tailwind Class Mapping
+# Replace every CSS class in your JSX with the Tailwind equivalents below.
+# Custom utilities (grain-overlay, text-gradient-gold, etc.) are defined in globals.css.
+# Custom components (btn-gold, card-base, etc.) are also in globals.css @layer components.
+
+══════════════════════════════════════════════════════════════
+ SHARED / GLOBAL
+══════════════════════════════════════════════════════════════
+
+Page wrapper (home-page / auth-page / assess-page)
+  OLD: .home-page / .auth-page / .assess-page
+  NEW: className="font-body bg-paper text-ink min-h-screen antialiased overflow-x-hidden grain-overlay"
+
+Max-width container (.wrap)
+  OLD: .wrap
+  NEW: className="max-w-[1180px] mx-auto px-8"
+
+Section header block (.section-header)
+  OLD: .section-header
+  NEW: className="text-center mb-16"
+
+Section heading (.section-h2)
+  OLD: .section-h2
+  NEW: className="font-display text-5xl font-extrabold text-ink tracking-tight leading-tight my-3"
+
+Section subtext (.section-sub)
+  OLD: .section-sub
+  NEW: className="text-base text-brown-2 max-w-lg mx-auto leading-relaxed"
+
+Tag / badge (.tag)
+  OLD: .tag
+  NEW: className="badge-gold"   ← @component in globals.css
+
+Button gold (.btn-gold)
+  OLD: .btn-gold
+  NEW: className="btn-gold btn-shimmer"   ← @component in globals.css
+
+Button outline (.btn-outline)
+  OLD: .btn-outline
+  NEW: className="btn-outline"   ← @component in globals.css
+
+Divider line
+  OLD: .divider-line
+  NEW: className="h-px bg-gradient-to-r from-transparent via-linen to-transparent"
+
+Scroll reveal
+  OLD: .reveal  /  .revealed
+  NEW: className="reveal"  (JS adds .revealed — keep this as-is, defined in globals.css)
+
+══════════════════════════════════════════════════════════════
+ HOME PAGE
+══════════════════════════════════════════════════════════════
+
+── NAV ──
+.nav                  → "nav-glass"  (component)
+.nav-inner            → "flex items-center justify-between h-[70px]"
+.nav-logo             → "flex items-center gap-3 flex-shrink-0"
+.nav-logo-mark (img)  → "w-10 h-10 rounded-[11px] object-contain"
+.nav-logo-name        → "font-display text-2xl font-bold text-ink tracking-tight"
+.nav-logo-badge       → "text-[0.6rem] font-semibold tracking-widest uppercase text-gold-dk bg-gold/10 border border-gold/25 px-2 py-0.5 rounded-pill"
+.nav-links            → "flex items-center gap-8"
+.nav-link             → "text-base font-medium text-brown-2 transition-colors hover:text-ink nav-link-underline"
+.nav-actions          → "flex items-center gap-4"
+.nav-login            → "text-base font-medium text-brown-2 hover:text-ink transition-colors"
+.nav-cta              → "inline-flex items-center gap-2 text-xs font-bold text-white px-5 py-2 rounded-lg shadow-gold transition-transform hover:-translate-y-px hover:shadow-gold-lg" + style="background:linear-gradient(135deg,#C8A84B,#A6882C)"
+.nav-darkmode         → "w-9 h-9 rounded-full bg-ivory border border-linen text-brown-2 text-sm flex items-center justify-center transition-all hover:bg-gold hover:text-white hover:border-gold"
+.nav-ham              → "hidden text-xl text-brown-2 md:hidden"  (show below md)
+
+── HERO ──
+.hero                 → "relative overflow-hidden py-24 pb-28 bg-paper"
+.hero-orb             → "absolute rounded-full pointer-events-none z-0"
+.hero-orb-1           → "w-[700px] h-[700px] -top-52 -right-44" + style="background:radial-gradient(circle,rgba(200,168,75,.09),transparent 65%)"
+.hero-orb-2           → "w-[500px] h-[500px] -bottom-36 -left-24" + style="background:radial-gradient(circle,rgba(181,164,143,.1),transparent 65%)"
+.hero-grid-bg         → "absolute inset-0 z-0 pointer-events-none bg-dot-grid"
+.hero-arc             → "absolute top-0 right-0 w-[520px] h-[520px] pointer-events-none z-0 opacity-35"
+.hero-inner           → "relative z-10 grid grid-cols-2 items-center gap-16"
+.hero-left            → "flex flex-col"
+.hero-eyebrow         → "mb-6 animate-fade-up"
+.hero-h1              → "font-display text-7xl font-extrabold leading-[1.05] tracking-[-0.03em] text-ink mb-6 animate-fade-up-delay-1"
+.hero-h1 em           → "font-display italic font-bold text-gradient-gold"
+.underline-gold       → "relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:h-[3px] after:w-full after:rounded after:bg-gradient-to-r after:from-gold after:to-gold-2"
+.hero-p               → "text-lg text-brown-2 leading-[1.72] max-w-[460px] mb-9 animate-fade-up-delay-2"
+.hero-actions         → "flex flex-wrap gap-4 mb-8 animate-fade-up-delay-3"
+.hero-trust           → "flex flex-wrap gap-6 mb-8 animate-fade-up-delay-4"
+.trust-item           → "flex items-center gap-1.5 text-sm text-brown-3"
+.trust-item i         → "text-gold text-sm"
+.hero-avatars         → "flex items-center animate-fade-up-delay-5"
+.hero-avatar          → "w-8 h-8 rounded-full border-2 border-paper text-gold-dk text-[0.62rem] font-bold flex items-center justify-center -mr-2 shadow-sm" + style="background:linear-gradient(135deg,#F0E4C0,#DDD5BE)"
+.hero-avatars-label   → "ml-5 text-sm text-brown-3 font-medium"
+.hero-card-wrap       → "relative animate-fade-up-delay-2"
+.hero-card            → "card-gold-sheen bg-paper border border-linen rounded-3xl p-8 shadow-xl animate-float"
+.card-header          → "flex items-center justify-between mb-5"
+.card-header-label    → "flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-brown-3"
+.live-badge           → "flex items-center gap-1.5 text-[0.65rem] font-bold tracking-wide uppercase text-gold-dk bg-gold-pale border border-gold/30 px-3 py-0.5 rounded-pill"
+.live-dot             → "w-1.5 h-1.5 rounded-full bg-gold animate-glow-pulse"
+.live-dot-sm          → "w-1.5 h-1.5 rounded-full bg-gold animate-glow-pulse flex-shrink-0"
+.mock-dashboard       → "mb-5 bg-ivory border border-linen rounded-lg px-4 py-3.5"
+.mock-match-row       → "flex justify-between items-center mb-3 text-[0.78rem] text-brown-3"
+.mock-match-val       → "font-semibold text-ink"
+.mock-bars            → "flex flex-col gap-2"
+.mock-bar-row         → "flex items-center gap-3"
+.mock-bar-label       → "text-[0.7rem] text-brown-3 w-[70px] flex-shrink-0"
+.mock-bar-pct         → "text-[0.7rem] font-semibold text-gold-dk w-8 text-right"
+.prog-track           → "h-[5px] flex-1 bg-ivory-2 rounded-pill overflow-hidden"
+.prog-fill            → "h-full rounded-pill animate-bar-fill" + style="background:linear-gradient(90deg,#C8A84B,#E2C578);width:92%"
+.prog-fill-taupe      → same but style="background:linear-gradient(90deg,#B5A48F,#DDD5BE)"
+.prog-fill-warm       → same but style="background:linear-gradient(90deg,#8C7B68,#B5A48F)"
+.card-stats           → "grid grid-cols-2 gap-2.5 mb-3"
+.card-stat            → "bg-ivory border border-linen rounded-lg p-3 transition-transform hover:-translate-y-0.5 hover:shadow-sm"
+.stat-label           → "text-[0.65rem] text-brown-3 uppercase tracking-wide mb-0.5"
+.stat-value           → "font-display text-base font-bold text-ink"
+.stat-note            → "text-[0.68rem] text-gold-dk mt-0.5"
+.stat-note-muted      → "text-[0.68rem] text-brown-3 mt-0.5"
+.card-footer          → "flex items-center justify-end gap-1.5 text-[0.73rem] font-medium text-gold-dk"
+.hero-badge           → "absolute -bottom-4 -left-6 bg-paper border border-linen rounded-2xl px-5 py-3.5 shadow-md flex items-center gap-3"
+.badge-icon           → "w-9 h-9 rounded-full bg-gold/12 flex items-center justify-center text-gold-dk"
+.badge-main           → "text-[0.8rem] font-semibold text-ink"
+.badge-sub            → "text-[0.7rem] text-brown-3"
+.hero-float-pill      → "absolute -top-4 right-0 bg-paper border border-gold/35 rounded-pill px-4 py-1.5 text-[0.72rem] font-medium text-brown-2 shadow-md flex items-center gap-2 animate-fade-in-right"
+.score-ring           → "absolute -top-6 right-14 w-[88px] h-[88px]"
+
+── PROOF ──
+.proof                → "py-12 border-y border-linen bg-paper"
+.proof-label          → "text-center text-[0.68rem] font-semibold tracking-[0.14em] uppercase text-brown-4 mb-7"
+.proof-logos          → "flex flex-wrap justify-center items-center gap-11 text-warm opacity-55"
+
+── STATS STRIP ──
+.stats-strip          → "bg-ivory border-b border-linen py-10"
+.stats-inner          → "grid grid-cols-4 gap-4 text-center"
+.stat-block           → ""  (wrapper div, no class needed)
+.stat-block-num       → "font-display text-4xl font-extrabold tracking-tight text-gradient-gold-simple"
+.stat-block-lbl       → "text-sm text-brown-3 mt-1"
+
+── HOW IT WORKS ──
+.how-section          → "py-24 bg-paper"
+.how-grid             → "grid grid-cols-3 gap-6 relative"
+.how-card             → "bg-paper border border-linen rounded-2xl p-9 shadow-sm relative transition-all hover:-translate-y-1.5 hover:shadow-md"
+.how-num              → "font-display text-6xl font-extrabold leading-none mb-3 opacity-20 tracking-tighter"
+.how-icon-wrap        → "w-14 h-14 rounded-xl flex items-center justify-center text-2xl mb-5"
+.how-title            → "font-display text-xl font-bold text-ink mb-2 tracking-tight"
+.how-desc             → "text-base text-brown-2 leading-relaxed"
+.how-arrow            → "absolute right-[-28px] top-1/2 -translate-y-1/2 text-linen-2 z-10"
+
+── FEATURES ──
+.features             → "py-24 bg-ivory relative overflow-hidden"
+.feat-grid            → "grid grid-cols-3 gap-6"
+.feat-card            → "bg-paper border border-linen rounded-2xl p-8 shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-md hover:border-taupe feat-card-hover"
+.feat-icon            → "w-12 h-12 rounded-[10px] flex items-center justify-center text-xl mb-5"
+.fi-1                 → "bg-gold/12 text-gold-dk"
+.fi-2                 → "bg-warm/10 text-warm"
+.fi-3                 → "bg-umber/10 text-umber"
+.fi-4                 → "bg-taupe/15 text-taupe"
+.fi-5                 → "bg-gold/8 text-gold"
+.fi-6                 → "bg-forest/12 text-forest"
+.feat-title           → "font-display text-xl font-bold text-ink mb-2"
+.feat-desc            → "text-base text-brown-2 leading-relaxed"
+
+── ROADMAP ──
+.roadmap-section      → "py-24 bg-paper"
+.roadmap-card         → "bg-ivory border border-linen rounded-3xl p-12 relative overflow-hidden"
+.roadmap-head         → "flex items-start justify-between flex-wrap gap-4 mb-12"
+.roadmap-title        → "font-display text-3xl font-extrabold text-ink tracking-tight mt-2.5"
+.roadmap-sub          → "text-sm text-brown-3 mt-1.5"
+.progress-badge       → "flex items-center gap-2 bg-paper border border-linen rounded-pill px-5 py-2 text-sm font-semibold text-gold-dk shadow-sm"
+.roadmap-steps        → "grid grid-cols-6 relative items-start"
+.roadmap-line         → "absolute top-[27px] left-[8%] right-[8%] h-0.5 z-0 roadmap-line-dashed"
+.roadmap-line-fill    → "absolute top-[27px] left-[8%] h-0.5 w-[47%] z-10" + style="background:linear-gradient(90deg,#C8A84B,#E2C578)"
+.rm-step              → "flex flex-col items-center gap-2 relative z-20"
+.rm-node              → "w-14 h-14 rounded-full flex items-center justify-center font-display text-lg font-bold transition-transform hover:scale-105"
+.rm-done              → "text-white border-[3px] border-gold-2 shadow-gold" + style="background:linear-gradient(135deg,#C8A84B,#A6882C)"
+.rm-active            → "w-16 h-16 text-xl text-gold-dk bg-paper border-[3px] border-gold animate-glow-pulse"
+.rm-locked            → "bg-ivory-2 text-taupe border-[2.5px] border-linen"
+.rm-label             → "text-[0.75rem] font-semibold text-ink text-center"
+.rm-label-dim         → "text-[0.75rem] text-brown-3 font-normal text-center"
+.rm-sub               → "text-[0.68rem] text-gold-dk font-semibold"
+.roadmap-hint         → "mt-10 text-center text-sm text-brown-3 flex items-center justify-center gap-2"
+
+── AI DEMO ──
+.demo-section         → "pb-24 bg-paper"
+.demo-card            → "bg-paper border border-linen rounded-3xl overflow-hidden shadow-md grid grid-cols-2"
+.demo-left            → "p-12 bg-ivory border-r border-linen flex flex-col justify-center"
+.demo-h3              → "font-display text-3xl font-extrabold text-ink leading-[1.18] tracking-tight my-3"
+.demo-h3 em           → "italic text-gold-dk"
+.demo-body            → "text-md text-brown-2 leading-[1.7] mb-6"
+.demo-tags            → "flex flex-wrap gap-2"
+.demo-tag             → "flex items-center gap-1.5 text-[0.78rem] font-medium bg-paper border border-linen text-brown-2 px-4 py-1.5 rounded-pill hover:border-taupe transition-colors"
+.demo-right           → "p-10 flex flex-col justify-center"
+.chat-bubble          → "bg-ivory border border-linen rounded-2xl p-6"
+.chat-head            → "flex items-center gap-3 pb-4 border-b border-linen mb-5"
+.chat-avatar          → "w-9 h-9 rounded-full flex items-center justify-center text-white text-base flex-shrink-0" + style="background:linear-gradient(135deg,#C8A84B,#A6882C)"
+.chat-name            → "text-sm font-semibold text-ink"
+.chat-time            → "text-[0.7rem] text-brown-3"
+.chat-msg             → "text-base text-brown-2 leading-relaxed mb-3"
+.chat-can             → "text-[#4d7044] font-semibold"
+.chat-warn            → "text-[#9a7219] font-semibold"
+.chat-cta-row         → "bg-paper border border-linen rounded-lg px-4 py-3 flex items-center gap-2 text-sm font-medium text-gold-dk mt-1"
+
+── TESTIMONIALS ──
+.testimonials-section → "py-24 bg-ivory"
+.testimonials-grid    → "grid grid-cols-2 gap-5 mb-8"
+.testimonial-card     → "testimonial-card-base"
+.testimonial-active   → "testimonial-card-active"
+.testimonial-stars    → "flex gap-1 text-gold text-[0.75rem] mb-3"
+.testimonial-text     → "text-base text-brown-2 leading-relaxed mb-5 italic"
+.testimonial-footer   → "flex items-center gap-3"
+.testimonial-avatar   → "w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center text-gold-dk text-[0.72rem] font-bold border-2 border-gold/25" + style="background:linear-gradient(135deg,#F0E4C0,#DDD5BE)"
+.testimonial-name     → "text-sm font-bold text-ink"
+.testimonial-role     → "text-[0.73rem] text-brown-3"
+.testimonial-match    → "ml-auto text-[0.72rem] font-semibold text-gold-dk bg-gold/10 border border-gold/22 px-3 py-1 rounded-pill whitespace-nowrap flex items-center gap-1.5"
+.testimonial-dots     → "flex justify-center gap-2"
+.t-dot                → "w-2 h-2 rounded-full bg-linen-2 transition-all duration-200"
+.t-dot-active         → "bg-gold scale-125"
+
+── CTA + PRICING ──
+.cta-section          → "pb-28 bg-paper"
+.cta-inner            → "bg-ivory border border-linen rounded-3xl py-20 px-8 text-center relative overflow-hidden"
+.cta-ring             → "absolute rounded-full border border-gold/10 pointer-events-none"
+.cr-1                 → "w-[360px] h-[360px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+.cr-2                 → "w-[560px] h-[560px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+.cr-3                 → "w-[760px] h-[760px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+.cta-h2               → "font-display text-6xl font-extrabold text-ink tracking-tight leading-[1.1] mb-4 relative z-10"
+.cta-h2 em            → "italic text-gold-dk"
+.cta-p                → "text-lg text-brown-2 max-w-sm mx-auto mb-10 leading-relaxed relative z-10"
+.cta-btns             → "flex flex-wrap justify-center gap-4 relative z-10 mb-5"
+.cta-note             → "text-[0.78rem] text-brown-4 flex items-center justify-center gap-1.5 relative z-10 mb-12"
+.pricing-tiers        → "grid grid-cols-3 gap-5 max-w-[880px] mx-auto relative z-10"
+.pricing-tier         → "pricing-tier-base"
+.pricing-tier-gold    → "pricing-tier-base pricing-tier-featured"
+.pt-popular           → "absolute -top-3 left-1/2 -translate-x-1/2 text-[0.62rem] font-extrabold tracking-widest uppercase text-white px-4 py-1 rounded-pill whitespace-nowrap shadow-gold" + style="background:linear-gradient(135deg,#C8A84B,#A6882C)"
+.pt-label             → "text-[0.7rem] font-bold tracking-widest uppercase text-brown-3 mb-2"
+.pt-price             → "font-display text-4xl font-extrabold text-ink tracking-tight mb-5"
+.pt-price span        → "text-base font-medium text-brown-3"
+.pt-features          → "flex flex-col gap-2 mb-6"
+.pt-features li       → "text-base text-brown-2 flex items-center gap-2"
+.pt-features li i     → "text-[0.75rem] text-forest w-3.5"
+.pt-no                → "text-brown-4"
+.pt-btn               → "flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold transition-all"
+.pt-btn-gold          → + "text-white shadow-gold hover:-translate-y-0.5 hover:shadow-gold-lg" + style="background:linear-gradient(135deg,#C8A84B,#A6882C)"
+.pt-btn-outline       → + "bg-transparent border border-linen text-ink hover:border-gold-dk hover:bg-gold/6"
+
+── FOOTER ──
+.footer               → "bg-ivory-2 border-t border-linen pt-16 pb-8"
+.footer-grid          → "grid grid-cols-[2.2fr_1fr_1fr_1fr] gap-10 mb-12"
+.footer-brand-mark    → "flex items-center gap-2.5 mb-3"
+.footer-mark-icon     → "w-8 h-8 rounded-[9px] flex items-center justify-center text-white text-sm" + style="background:linear-gradient(135deg,#C8A84B,#A6882C)"
+.footer-brand-name    → "font-display text-2xl font-bold text-ink"
+.footer-brand-desc    → "text-sm text-brown-3 leading-relaxed max-w-[270px]"
+.footer-col-h         → "text-[0.75rem] font-semibold tracking-widest uppercase text-ink-2 mb-3.5"
+.footer-links         → "flex flex-col gap-2"
+.footer-links a       → "text-sm text-brown-3 hover:text-ink transition-colors"
+.footer-socials       → "flex gap-3 mt-4"
+.footer-socials a     → "w-8 h-8 bg-paper border border-linen rounded-full flex items-center justify-center text-brown-3 text-sm transition-all hover:bg-gold hover:text-white hover:border-gold"
+.footer-bottom        → "border-t border-linen pt-6 flex flex-wrap justify-between items-center gap-4"
+.footer-copy          → "text-[0.78rem] text-brown-4"
+.footer-darkmode      → "text-[0.78rem] text-brown-3 flex items-center gap-1.5 bg-paper border border-linen px-4 py-1.5 rounded-pill transition-all hover:border-gold hover:text-gold-dk"
+.sticky-cta           → "fixed bottom-7 left-1/2 -translate-x-1/2 z-50 animate-fade-up-delay-5"
+.sticky-cta-btn       → "inline-flex items-center gap-2 text-white font-bold text-sm px-8 py-3 rounded-pill border-0 cursor-pointer shadow-[0_8px_32px_rgba(200,168,75,.45)] transition-transform hover:-translate-y-1 hover:scale-105" + style="background:linear-gradient(135deg,#C8A84B,#A6882C)"
+.to-top               → "fixed bottom-7 right-7 w-11 h-11 bg-paper border border-linen rounded-full flex items-center justify-center text-warm text-sm shadow-md z-50 transition-all hover:bg-gold hover:text-white hover:border-gold hover:-translate-y-0.5"
+
+══════════════════════════════════════════════════════════════
+ ASSESSMENT PAGE
+══════════════════════════════════════════════════════════════
+
+Page
+.assess-page          → "font-body bg-paper text-ink h-screen flex flex-col overflow-hidden antialiased relative grain-overlay"
+
+Background blobs
+.bg-blob              → "fixed rounded-full pointer-events-none z-0 animate-blob-drift"
+.bg-blob-1            → "w-[55vw] h-[55vw] max-w-[700px] -top-[15vw] -right-[10vw]"   + style="background:radial-gradient(...)"
+.bg-blob-2            → "w-[50vw] h-[50vw] max-w-[640px] -bottom-[15vw] -left-[8vw]" + style="..."
+.bg-blob-3            → "w-[35vw] h-[35vw] max-w-[480px] top-[30%] left-[30%]" + style="..."
+.bg-grid              → "fixed inset-0 z-0 pointer-events-none bg-dot-grid"
+
+Header
+.assess-header        → "relative z-50 flex-shrink-0 border-b border-linen/60 shadow-sm" + style="background:rgba(253,252,248,.92);backdrop-filter:blur(20px)"
+.assess-header-inner  → "flex items-center justify-between h-[60px] px-8"
+.assess-logo          → "flex items-center gap-2.5 cursor-default"
+.assess-logo-mark     → "w-9 h-9 rounded-[10px] flex items-center justify-center text-white text-sm shadow-gold" + style="background:linear-gradient(135deg,#E2C578,#A6882C)"
+.assess-logo-name     → "font-display text-xl font-bold text-ink tracking-tight"
+.assess-progress-wrap → "flex items-center gap-3"
+.assess-progress-track→ "w-[180px] h-[5px] bg-ivory-2 rounded-pill overflow-hidden"
+.assess-progress-fill → "h-full rounded-pill transition-[width] duration-700 progress-shimmer"
+.assess-progress-pct  → "text-[0.75rem] font-bold text-gold-dk min-w-[36px] text-right"
+
+Main viewport
+.assess-viewport      → "flex-1 overflow-hidden relative z-10"
+
+Phase layout (two-column)
+.phase-layout         → "flex h-full animate-phase-in"
+.phase-sidebar        → "w-[300px] flex-shrink-0 border-r border-linen/50 flex flex-col gap-6 p-8 overflow-y-auto custom-scroll" + style="background:rgba(245,240,232,.6);backdrop-filter:blur(8px)"
+.phase-content        → "flex-1 flex items-center justify-center p-8 overflow-y-auto"
+.center-content       → + "flex-col gap-6"
+.sidebar-heading      → "flex flex-col gap-2"
+.phase-tag            → "inline-flex items-center gap-1.5 text-[0.64rem] font-bold tracking-[0.14em] uppercase text-gold-dk bg-gold/10 border border-gold/25 px-3 py-1 rounded-pill w-fit"
+.phase-h1             → "font-display font-extrabold text-ink tracking-[-0.03em] leading-[1.1]" (size clamp via text-[clamp(1.7rem,3vw,2.4rem)])
+.phase-h1 em          → "italic text-gold-dk"
+.phase-sub            → "text-[0.83rem] text-brown-2 leading-[1.55]"
+
+Step indicator (vertical)
+.step-indicator       → "flex flex-col gap-0"
+.step-item            → "flex items-center gap-3 relative"
+.step-bubble          → "step-bubble-base"
+.step-item.active     → "step-bubble-active"  (via conditional className)
+.step-item.done       → "step-bubble-done"
+.step-label           → "text-[0.75rem] font-semibold text-brown-3 tracking-wide"
+(active label) → "text-gold-dk"   (done label) → "text-forest"
+.step-line-wrap       → "step-line-wrap"  (utility in globals.css)
+.step-line            → "w-full h-full bg-linen rounded-pill"
+.step-line-done       → "bg-forest"
+
+Liked chips
+.liked-chips-wrap     → "flex flex-col gap-2"
+.liked-chips-label    → "text-[0.72rem] font-semibold text-forest tracking-wide"
+.liked-chips          → "flex flex-wrap gap-1.5"
+.liked-chip           → "inline-flex items-center gap-1.5 text-[0.72rem] font-medium text-gold-dk bg-gold-pale border border-gold/28 px-3 py-1 rounded-pill animate-chip-in"
+
+Personality progress (sidebar)
+.sidebar-qprogress    → "flex flex-col gap-1.5"
+.sqp-track            → "h-1 bg-linen rounded-pill overflow-hidden"
+.sqp-fill             → "h-full rounded-pill transition-[width] duration-500" + style="background:linear-gradient(90deg,#A6882C,#E2C578)"
+.sqp-label            → "text-[0.72rem] text-brown-3 font-semibold text-right"
+
+Career phase (full-width)
+.phase-layout-full    → "flex flex-col p-7 overflow-y-auto gap-6"
+.career-phase-header  → "text-center"
+.career-grid          → "grid grid-cols-3 gap-4"
+.career-card          → "career-card-base"
+.career-card-top      → + "career-card-gold"
+.career-top-badge     → "inline-flex items-center gap-1.5 text-[0.62rem] font-extrabold tracking-widest uppercase text-white px-3 py-1 rounded-pill mb-3 shadow-gold" + style="background:linear-gradient(135deg,#C8A84B,#A6882C)"
+.career-card-header   → "flex items-start justify-between gap-2 mb-3"
+.career-card-title    → "font-display text-base font-bold text-ink leading-tight tracking-tight"
+.career-card-pct      → "font-display text-xl font-extrabold text-gold-dk flex-shrink-0 leading-none"
+.career-match-bar     → "h-1 bg-ivory-2 rounded-pill overflow-hidden mb-3"
+.career-match-fill    → "h-full rounded-pill transition-[width] duration-1000" + style="background:linear-gradient(90deg,#A6882C,#E2C578)"
+.career-card-domains  → "flex flex-wrap gap-1.5 mb-4"
+.career-domain-tag    → "text-[0.62rem] font-semibold tracking-wide uppercase text-brown-3 bg-ivory border border-linen px-2 py-0.5 rounded-pill"
+.career-card-cta      → "flex items-center gap-1.5 text-[0.78rem] font-semibold text-gold-dk transition-[gap] duration-200 group-hover:gap-2.5"
+
+Loading
+.loading-screen       → "h-full flex flex-col items-center justify-center gap-7 text-center animate-fade-up"
+.loading-spinner      → "relative w-20 h-20 flex items-center justify-center"
+.spinner-ring         → "absolute inset-0 rounded-full border-[3px] border-transparent border-t-gold border-r-gold/30 animate-spin"
+.spinner-ring-2       → "absolute inset-2.5 rounded-full border-[3px] border-transparent border-b-gold-dk border-l-gold/20 animate-spin-slow animate-spin-reverse"
+.spinner-core         → "w-8 h-8 rounded-full flex items-center justify-center text-gold-dk text-sm shadow-gold" + style="background:linear-gradient(135deg,#F0E4C0,#F5DFA0)"
+.loading-title        → "font-display text-2xl font-bold text-ink tracking-tight"
+.loading-sub          → "text-sm text-brown-2"
+.loading-steps        → "flex flex-col gap-2"
+.loading-step         → "text-sm text-brown-3 font-medium flex items-center gap-2 opacity-0 animate-step-in"
+
+Aptitude sidebar stats
+.apt-sidebar-stats    → "flex flex-col gap-3"
+.apt-stat             → "flex items-center gap-3 bg-paper border border-linen rounded-lg px-3.5 py-2.5 shadow-sm"
+.apt-stat-icon        → "text-gold-dk w-5 text-center"
+.apt-stat-val         → "font-display text-lg font-extrabold text-ink leading-none"
+.apt-stat-lbl         → "text-[0.65rem] text-brown-3 font-semibold tracking-wide uppercase mt-0.5"
+.apt-q-progress-wrap  → "mt-auto"
+.apt-q-track          → "h-1 bg-linen rounded-pill overflow-hidden"
+.apt-q-fill           → "h-full rounded-pill transition-[width] duration-500" + style="background:linear-gradient(90deg,#A6882C,#E2C578)"
+
+Aptitude card
+.apt-card             → "bg-paper border border-linen/70 rounded-3xl p-9 shadow-lg max-w-[600px] w-full animate-phase-in flex flex-col gap-5" + radial-gradient bg via style
+.apt-card-top         → "flex items-center justify-between pb-4 border-b border-ivory-2"
+.apt-badges           → "flex items-center gap-2 flex-wrap"
+.apt-pts-badge        → "text-[0.7rem] font-bold text-gold-dk bg-gold/12 border border-gold/28 px-2.5 py-0.5 rounded-pill inline-flex items-center gap-1"
+.apt-skill-badge      → "text-[0.7rem] text-brown-3 font-medium bg-ivory border border-linen px-2.5 py-0.5 rounded-pill inline-flex items-center gap-1"
+.apt-timer            → "relative w-12 h-12 flex-shrink-0"
+.apt-timer-ring       → "w-12 h-12"
+.apt-timer-num        → "absolute inset-0 flex items-center justify-center text-[0.72rem] font-extrabold"
+.apt-question         → "font-display text-xl font-bold text-ink leading-snug tracking-tight"
+.apt-options          → "flex flex-col gap-2.5"
+.apt-option           → "apt-option-base"
+.apt-selected         → "apt-option-selected"
+.apt-correct          → "apt-option-correct"
+.apt-wrong            → "apt-option-wrong"
+.apt-opt-letter       → "w-8 h-8 rounded-full flex-shrink-0 bg-paper text-ink-2 border border-linen flex items-center justify-center text-[0.74rem] font-extrabold shadow-sm transition-all"
+.apt-opt-text         → "flex-1 text-sm text-ink font-medium leading-snug"
+.apt-opt-icon         → "text-sm flex-shrink-0"
+.apt-opt-icon.correct → + "text-forest"
+.apt-opt-icon.wrong   → + "text-danger"
+.apt-next-btn         → "flex items-center justify-center gap-2.5 w-full py-3.5 text-white font-bold text-sm font-body border-0 cursor-pointer rounded-xl shadow-gold transition-transform animate-fade-up hover:-translate-y-0.5 hover:shadow-gold-lg tracking-wide" + style="background:linear-gradient(135deg,#E2C578,#C8A84B,#A6882C)"
+
+Results
+.results-screen       → "flex h-full animate-phase-in"
+.results-left         → "w-[320px] flex-shrink-0 border-r border-linen/50 flex flex-col gap-5 p-8 overflow-y-auto custom-scroll" + style="background:rgba(245,240,232,.55)"
+.results-right        → "flex-1 px-8 py-7 overflow-y-auto flex flex-col gap-4 custom-scroll"
+.results-hero-icon    → "w-12 h-12 rounded-xl flex items-center justify-center text-gold-dk text-xl shadow-gold border border-gold/30" + style="background:linear-gradient(135deg,#F0E4C0,#F5DFA0)"
+.results-h1           → "font-display font-extrabold text-ink tracking-[-0.03em] leading-[1.1]"  (clamp size)
+.results-h1 em        → "italic text-gold-dk"
+.results-sub          → "text-[0.8rem] text-brown-2 leading-relaxed"
+.results-score-ring-wrap → "flex justify-center"
+.results-career-badge → "flex items-center gap-3 bg-paper border border-linen rounded-xl p-4 shadow-sm"
+.rcb-title            → "font-display text-base font-bold text-ink leading-tight"
+.rcb-pts              → "text-[0.72rem] text-brown-3 font-medium mt-0.5"
+.results-verdict      → "flex items-start gap-2.5 bg-gold-pale border border-gold/28 rounded-lg px-4 py-3 text-sm text-ink-2 leading-snug"
+.rv-icon              → "text-gold-dk mt-0.5 flex-shrink-0"
+.results-ctas         → "flex gap-3"
+.rcta-primary         → "flex-1 flex items-center justify-center gap-2.5 text-white font-bold text-sm px-4 py-3 rounded-xl border-0 cursor-pointer shadow-gold transition-transform hover:-translate-y-0.5 hover:shadow-gold-lg" + style="background:linear-gradient(135deg,#E2C578,#A6882C)"
+.rcta-secondary       → "flex-1 flex items-center justify-center gap-2.5 bg-paper text-ink font-semibold text-sm px-4 py-3 rounded-xl border border-linen-2 cursor-pointer shadow-sm transition-all hover:bg-ivory hover:border-taupe hover:-translate-y-0.5"
+.results-block        → "results-block-base"
+.rb-title             → "text-[0.7rem] font-extrabold tracking-[0.12em] uppercase text-ink-2 mb-4 flex items-center gap-2"
+.rb-career-row        → "flex items-center gap-3 px-3 py-2 rounded-lg bg-ivory border border-linen mb-2 transition-all hover:border-gold hover:bg-gold-pale"
+.rb-rank              → "text-[0.7rem] font-extrabold text-gold-dk w-5"
+.rb-name              → "text-sm font-semibold text-ink-2 flex-1"
+.rb-bar-wrap          → "w-20 h-1 bg-linen rounded-pill overflow-hidden"
+.rb-bar               → "h-full rounded-pill transition-[width] duration-1000" + style="background:linear-gradient(90deg,#A6882C,#E2C578)"
+.rb-pct               → "text-[0.78rem] font-extrabold text-gold-dk w-8 text-right"
+.rb-chips             → "flex flex-wrap gap-1.5"
+.rb-chip              → "inline-flex items-center gap-1.5 text-[0.78rem] font-medium text-brown-2 bg-ivory border border-linen px-3 py-1.5 rounded-pill transition-all hover:bg-gold-pale hover:text-gold-dk hover:border-gold/30"
+.rb-personality       → "flex flex-col gap-2"
+.rb-trait             → "flex items-center justify-between px-3 py-2 bg-ivory border border-linen rounded-lg text-sm"
+.rb-trait-key         → "text-brown-3 font-medium capitalize"
+.rb-trait-val         → "text-gold-dk font-bold capitalize"
+.phase-done           → "text-center text-brown-3 p-16"
+.phase-done-icon      → "text-4xl text-forest mb-3"
+
+Interest card
+.interest-stack       → "relative w-[300px] h-[340px] flex items-center justify-center"
+.interest-card        → "interest-card-base"
+.interest-card-ghost  → "absolute w-[280px] h-full bg-ivory border border-linen rounded-2xl shadow-md"
+.like-stamp           → "interest-card-stamp left-5 text-forest border-2 border-forest bg-forest-pale"
+.nope-stamp           → "interest-card-stamp right-5 text-danger border-2 border-danger bg-danger-pale"
+.interest-card-icon-wrap → "w-[72px] h-[72px] rounded-xl flex items-center justify-center shadow-gold border border-gold/30" + style="background:linear-gradient(135deg,#F0E4C0,#F5DFA0)"
+.interest-card-fa     → "text-[1.8rem] text-gold-dk"
+.interest-card-label  → "font-display text-lg font-bold text-ink text-center leading-tight tracking-tight"
+.interest-card-domain → "inline-flex items-center gap-1.5 text-[0.68rem] font-semibold tracking-widest uppercase text-brown-3 bg-ivory border border-linen px-3 py-1 rounded-pill"
+.interest-actions     → "flex items-center gap-7"
+.interest-btn         → "rounded-full border-0 cursor-pointer flex items-center justify-center transition-all shadow-md"
+.skip-btn             → "w-14 h-14 text-lg bg-white text-danger border-2 border-danger/18 hover:bg-danger-pale hover:border-danger hover:scale-110 hover:rotate-[-8deg]"
+.like-btn             → "w-16 h-16 text-[1.35rem] text-white shadow-gold hover:scale-110 hover:rotate-[8deg]" + style="background:linear-gradient(135deg,#C8A84B,#A6882C)"
+.interest-count       → "text-[0.78rem] text-brown-3 font-semibold min-w-[38px] text-center"
+
+Personality card
+.personality-card     → "bg-paper border border-linen/70 rounded-3xl p-9 shadow-lg max-w-[560px] w-full animate-phase-in" + radial-gradient bg
+.personality-qnum     → "text-[0.68rem] font-bold tracking-[0.12em] uppercase text-gold-dk mb-2.5"
+.personality-question → "font-display text-xl font-bold text-ink leading-snug mb-6 tracking-tight"
+.personality-options  → "flex flex-col gap-2.5"
+.personality-option   → "pers-option-base"
+.pers-opt-icon        → "w-9 h-9 rounded-lg flex-shrink-0 bg-paper border border-linen flex items-center justify-center text-gold-dk shadow-sm transition-all group-hover:bg-gold group-hover:text-white group-hover:border-gold-dk"
+.pers-opt-label       → "flex-1 text-sm text-ink font-medium leading-snug"
+.pers-opt-arrow       → "text-[0.75rem] text-brown-4 transition-all group-hover:translate-x-1 group-hover:text-gold"
+
+══════════════════════════════════════════════════════════════
+ LOGIN PAGE
+══════════════════════════════════════════════════════════════
+
+.auth-page            → "font-body bg-paper text-ink antialiased min-h-screen flex flex-col grain-overlay"
+.auth-orb             → "fixed rounded-full pointer-events-none z-0"
+.auth-orb-1           → "w-[600px] h-[600px] -top-44 -right-40" + style="background:radial-gradient(circle,rgba(200,168,75,.07),transparent 65%)"
+.auth-orb-2           → "w-[480px] h-[480px] -bottom-36 -left-28" + style="background:radial-gradient(circle,rgba(181,164,143,.09),transparent 65%)"
+.auth-nav             → "sticky top-0 z-50 border-b border-linen shadow-sm" + style="background:rgba(253,252,248,.88);backdrop-filter:blur(20px)"
+.auth-nav-inner       → "max-w-[1180px] mx-auto px-8 flex items-center justify-between h-[70px]"
+.auth-nav-logo        → "flex items-center gap-3 no-underline"
+.auth-nav-mark        → "w-10 h-10 rounded-[11px] flex items-center justify-center text-white text-base shadow-gold flex-shrink-0" + style="background:linear-gradient(140deg,#C8A84B,#A6882C)"
+.auth-nav-name        → "font-display text-2xl font-bold text-ink tracking-tight"
+.auth-nav-badge       → "text-[0.6rem] font-semibold tracking-widest uppercase text-gold-dk bg-gold/10 border border-gold/25 px-2 py-0.5 rounded-pill"
+.auth-nav-back        → "inline-flex items-center gap-1.5 text-base font-medium text-brown-2 no-underline transition-colors hover:text-ink"
+.auth-main            → "flex-1 flex items-center justify-center py-12 px-6 relative z-10"
+.auth-card            → "bg-paper border border-linen rounded-3xl p-11 w-full max-w-[480px] shadow-xl relative overflow-hidden animate-fade-up card-gold-sheen"
+.auth-card-header     → "text-center mb-8 relative z-10"
+.auth-card-icon       → "w-24 h-24 bg-transparent mx-auto mb-5"   (logo image)
+.auth-card-title      → "font-display text-4xl font-extrabold text-ink tracking-tight leading-tight mb-1.5"
+.auth-card-sub        → "text-md text-brown-3 leading-relaxed"
+.auth-tabs            → "flex bg-ivory border border-linen rounded-lg p-1.5 mb-7 relative z-10"
+.auth-tab             → "flex-1 py-2.5 px-4 text-base font-semibold text-brown-3 rounded-md border-0 bg-transparent cursor-pointer transition-all duration-200 hover:text-ink"
+.auth-tab.active      → + "bg-paper text-ink shadow-sm"
+.auth-form            → "relative z-10"
+.auth-field           → "mb-4.5"
+.auth-label           → "block text-sm font-semibold text-ink-2 tracking-wide mb-1.5"
+.auth-input-wrap      → "relative flex items-center"
+.auth-input-icon      → "absolute left-4 text-brown-3 text-sm pointer-events-none transition-colors"
+.auth-input           → "auth-input-base"
+.auth-input.input-error → + "auth-input-error"
+.auth-input.input-ok  → + "auth-input-ok"
+.auth-input-toggle    → "absolute right-4 bg-transparent border-0 cursor-pointer text-brown-3 text-sm p-1 transition-colors hover:text-gold-dk"
+.auth-field-msg       → "flex items-center gap-1.5 text-[0.74rem] mt-1.5 min-h-4"
+.auth-field-msg.error → + "text-danger"
+.auth-field-msg.ok    → + "text-forest"
+.strength-meter       → "mt-2"
+.strength-bars        → "flex gap-1.5 mb-1"
+.strength-bar         → "flex-1 h-1 rounded-pill bg-ivory-2 transition-colors duration-300"
+.strength-bar active  → + "strength-weak / strength-fair / strength-strong"
+.strength-label       → "text-[0.72rem] font-semibold text-brown-3"
+.strength-label.weak  → + "text-danger"
+.strength-label.fair  → + "text-gold-dk"
+.strength-label.strong→ + "text-forest"
+.auth-submit          → "w-full mt-6 flex items-center justify-center gap-2.5 text-white font-semibold text-base py-3.5 px-8 rounded-lg border-0 cursor-pointer shadow-gold transition-all auth-btn-shimmer disabled:opacity-60 disabled:cursor-not-allowed hover:not-disabled:-translate-y-0.5 hover:not-disabled:shadow-gold-lg" + style="background:linear-gradient(135deg,#C8A84B,#A6882C)"
+.auth-spinner         → "w-4 h-4 rounded-full border-2 border-white/35 border-t-white animate-spin"
+.auth-divider         → "flex items-center gap-3.5 my-6 relative z-10"
+.auth-divider-line    → "flex-1 h-px bg-gradient-to-r from-transparent via-linen to-transparent"
+.auth-divider-text    → "text-[0.72rem] font-semibold tracking-wide uppercase text-brown-4"
+.auth-footer-text     → "text-center text-sm text-brown-3 mt-5 relative z-10"
+.auth-footer-link     → "text-gold-dk font-semibold bg-transparent border-0 cursor-pointer underline decoration-gold-dk/30 transition-colors hover:text-gold"
+.auth-alert           → "flex items-start gap-3 px-4 py-3.5 rounded-lg text-sm leading-relaxed mb-5 relative z-10 animate-fade-up"
+.auth-alert.success   → + "bg-forest/8 border border-forest/25 text-forest"
+.auth-alert.error     → + "bg-danger-pale border border-danger/20 text-danger"
+.auth-terms           → "text-[0.74rem] text-brown-4 text-center leading-snug mt-3.5 relative z-10"
+.auth-terms a         → "text-gold-dk underline"

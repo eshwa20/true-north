@@ -1,0 +1,1050 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ── Tailwind v4: resolve dark: using data-theme attribute ── */
+@variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* TrueNorth Color Theme */
+:root {
+  --cream: #FDFCF8;
+  --parchment: #F5F0E8;
+  --border: #DDD5BE;
+  --muted: #EDE7D9;
+  --gold: #C8A84B;
+  --goldDark: #9a6f10;
+  --goldLight: #f0d880;
+  --brown: #2E2218;
+  --text: #1a1008;
+  --text-secondary: #5C4E42;
+  --sub: #967A68;
+  
+  /* Button specific */
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-bg: linear-gradient(135deg, #C8A84B 0%, #9a6f10 100%);
+  --btn-secondary-text: #1a1008;
+  --btn-secondary-border: #DDD5BE;
+  
+  /* Card backgrounds */
+  --card-bg: #FFFFFF;
+  --card-bg-secondary: #F5F0E8;
+  --card-bg-tertiary: #EDE7D9;
+  
+  /* Stats/Info boxes */
+  --stat-bg: #F5F0E8;
+  --stat-text: #2E2218;
+  --stat-label: #967A68;
+  
+  /* Icons */
+  --icon-color: #967A68;
+  --icon-hover: #C8A84B;
+  
+  /* Tags/Pills */
+  --tag-bg: rgba(200, 168, 75, 0.15);
+  --tag-text: #9a6f10;
+  
+  --bg-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L55 30 L30 55 L5 30 Z' fill='none' stroke='%23C8A84B' stroke-width='0.3' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --cream: #1A1814;
+  --parchment: #24211C;
+  --border: #3D362E;
+  --muted: #2A2620;
+  --gold: #D4B85C;
+  --goldDark: #C8A84B;
+  --goldLight: #9a6f10;
+  --brown: #F0EBE0;
+  --text: #F0EBE0;
+  --text-secondary: #D5CCBE;
+  --sub: #B5A48F;
+  
+  /* Button specific */
+  --btn-primary-text: #1a1008;
+  --btn-primary-bg: linear-gradient(135deg, #D4B85C 0%, #C8A84B 100%);
+  --btn-secondary-text: #F0EBE0;
+  --btn-secondary-border: #4A4239;
+  
+  /* Card backgrounds */
+  --card-bg: #24211C;
+  --card-bg-secondary: #2A2620;
+  --card-bg-tertiary: #312C25;
+  
+  /* Stats/Info boxes */
+  --stat-bg: #2A2620;
+  --stat-text: #F0EBE0;
+  --stat-label: #B5A48F;
+  
+  /* Icons */
+  --icon-color: #B5A48F;
+  --icon-hover: #D4B85C;
+  
+  /* Tags/Pills */
+  --tag-bg: rgba(212, 184, 92, 0.15);
+  --tag-text: #D4B85C;
+  
+  --bg-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L55 30 L30 55 L5 30 Z' fill='none' stroke='%23D4B85C' stroke-width='0.3' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--cream) !important;
+  background-image: var(--bg-pattern);
+  color: var(--text) !important;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--brown);
+}
+
+p, span, div, li, label {
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--gold);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Icons - Fix visibility */
+i, .fas, .far, .fab {
+  color: var(--icon-color);
+}
+
+button:hover i,
+a:hover i,
+.btn-gold i,
+.btn-gold:hover i {
+  color: inherit;
+}
+
+.btn-gold i {
+  color: var(--btn-primary-text);
+}
+
+/* Background Orbs */
+.bg-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.bg-orb-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(200, 168, 75, 0.08), transparent 70%);
+  top: -200px;
+  right: -200px;
+}
+
+.bg-orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(90, 122, 82, 0.04), transparent 70%);
+  bottom: -150px;
+  left: -150px;
+}
+
+.bg-orb-3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(184, 169, 154, 0.03), transparent 70%);
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+}
+
+[data-theme="dark"] .bg-orb-1 {
+  background: radial-gradient(circle, rgba(212, 184, 92, 0.08), transparent 70%);
+}
+
+[data-theme="dark"] .bg-orb-2 {
+  background: radial-gradient(circle, rgba(90, 122, 82, 0.04), transparent 70%);
+}
+
+/* Navigation */
+.nav-glass {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(253, 252, 248, 0.9) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(44, 36, 27, 0.04);
+}
+
+[data-theme="dark"] .nav-glass {
+  background: rgba(26, 24, 20, 0.9) !important;
+}
+
+/* Buttons */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--btn-primary-text) !important;
+  border-radius: 2rem;
+  padding: 0.75rem 2rem;
+  background: var(--btn-primary-bg);
+  box-shadow: 0 4px 12px rgba(200, 168, 75, 0.15);
+  transition: all 0.25s ease;
+  border: none;
+  font-size: 0.95rem;
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(200, 168, 75, 0.25);
+  color: var(--btn-primary-text) !important;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  border-radius: 2rem;
+  padding: 0.75rem 2rem;
+  background: transparent;
+  color: var(--btn-secondary-text) !important;
+  border: 1.5px solid var(--btn-secondary-border);
+  transition: all 0.25s ease;
+  font-size: 0.95rem;
+}
+
+.btn-outline:hover {
+  border-color: var(--gold);
+  background: rgba(200, 168, 75, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Tags/Badges */
+.tag-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 1rem;
+  background: var(--tag-bg);
+  color: var(--tag-text) !important;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(200, 168, 75, 0.2);
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--goldDark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Dividers */
+.divider-gold {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--goldLight));
+  border-radius: 3px;
+  margin: 1.5rem auto;
+}
+
+/* ============================================================
+   STAT/INFO BOXES - Fix for light background text visibility
+   ============================================================ */
+
+/* Stat boxes (Points, Question count, Difficulty) */
+.stat-box,
+.bg-amber-100,
+.bg-amber-50,
+[class*="bg-amber-"] {
+  background-color: var(--stat-bg) !important;
+}
+
+.stat-box .text-2xl,
+.stat-box .font-bold,
+.bg-amber-100 .text-2xl,
+.bg-amber-100 .font-bold,
+.bg-amber-50 .text-2xl,
+.bg-amber-50 .font-bold {
+  color: var(--stat-text) !important;
+  font-weight: 700;
+}
+
+.stat-box .text-xs,
+.stat-box .text-sm:not(.font-bold),
+.bg-amber-100 .text-xs,
+.bg-amber-50 .text-xs {
+  color: var(--stat-label) !important;
+}
+
+/* Points pill in aptitude test */
+.points-pill,
+span.px-3.py-1.bg-amber-100 {
+  background-color: var(--tag-bg) !important;
+  color: var(--tag-text) !important;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .points-pill,
+[data-theme="dark"] span.px-3.py-1.bg-amber-100 {
+  background-color: rgba(212, 184, 92, 0.2) !important;
+  color: var(--gold) !important;
+}
+
+/* Skill tag */
+.skill-tag,
+span.px-3.py-1.bg-gray-100 {
+  background-color: var(--card-bg-tertiary) !important;
+  color: var(--text-secondary) !important;
+  font-weight: 500;
+}
+
+[data-theme="dark"] .skill-tag,
+[data-theme="dark"] span.px-3.py-1.bg-gray-100 {
+  background-color: var(--muted) !important;
+  color: var(--text) !important;
+}
+
+/* ============================================================
+   CARD AND BACKGROUND UTILITIES
+   ============================================================ */
+
+.bg-white {
+  background-color: var(--card-bg) !important;
+}
+
+.bg-gray-50 {
+  background-color: var(--card-bg-secondary) !important;
+}
+
+.bg-gray-100 {
+  background-color: var(--card-bg-tertiary) !important;
+}
+
+/* ============================================================
+   TEXT COLOR UTILITIES - Enhanced contrast
+   ============================================================ */
+
+.text-gray-900,
+.text-gray-800 {
+  color: var(--brown) !important;
+  font-weight: 600;
+}
+
+.text-gray-700 {
+  color: var(--text) !important;
+  font-weight: 500;
+}
+
+.text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+
+.text-gray-500 {
+  color: var(--sub) !important;
+}
+
+.text-gray-400 {
+  color: var(--sub) !important;
+  opacity: 0.8;
+}
+
+[data-theme="dark"] .text-gray-900,
+[data-theme="dark"] .text-gray-800 {
+  color: var(--brown) !important;
+}
+
+[data-theme="dark"] .text-gray-700,
+[data-theme="dark"] .text-gray-600 {
+  color: var(--text) !important;
+}
+
+[data-theme="dark"] .text-gray-500,
+[data-theme="dark"] .text-gray-400 {
+  color: var(--sub) !important;
+}
+
+/* ============================================================
+   BORDER UTILITIES
+   ============================================================ */
+
+.border-gray-200,
+.border-gray-300 {
+  border-color: var(--border) !important;
+}
+
+/* ============================================================
+   APTITUDE OPTION BUTTONS
+   ============================================================ */
+
+.apt-option,
+button.w-full.flex.items-center.gap-4 {
+  background-color: var(--card-bg-secondary) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+.apt-option:hover,
+button.w-full.flex.items-center.gap-4:hover {
+  background-color: var(--card-bg) !important;
+  border-color: var(--gold) !important;
+}
+
+/* Option letters (A, B, C, D) */
+.apt-option span.w-8.h-8,
+button.w-full span.w-8.h-8 {
+  background-color: var(--card-bg-tertiary) !important;
+  color: var(--text) !important;
+  font-weight: 600;
+}
+
+/* ============================================================
+   STATE COLORS (Correct/Wrong/Selected)
+   ============================================================ */
+
+.border-amber-500 {
+  border-color: var(--gold) !important;
+}
+
+.bg-amber-50 {
+  background-color: rgba(200, 168, 75, 0.1) !important;
+}
+
+[data-theme="dark"] .bg-amber-50 {
+  background-color: rgba(212, 184, 92, 0.15) !important;
+}
+
+.border-green-500 {
+  border-color: #5A7A52 !important;
+}
+
+.bg-green-50 {
+  background-color: rgba(90, 122, 82, 0.1) !important;
+}
+
+[data-theme="dark"] .bg-green-50 {
+  background-color: rgba(90, 122, 82, 0.15) !important;
+}
+
+.border-red-500 {
+  border-color: #C0392B !important;
+}
+
+.bg-red-50 {
+  background-color: rgba(192, 57, 43, 0.08) !important;
+}
+
+[data-theme="dark"] .bg-red-50 {
+  background-color: rgba(192, 57, 43, 0.12) !important;
+}
+
+.text-green-600 {
+  color: #5A7A52 !important;
+}
+
+.text-red-600 {
+  color: #C0392B !important;
+}
+
+.text-amber-600 {
+  color: var(--goldDark) !important;
+}
+
+[data-theme="dark"] .text-green-600 {
+  color: #6B9A62 !important;
+}
+
+[data-theme="dark"] .text-red-600 {
+  color: #E0554B !important;
+}
+
+[data-theme="dark"] .text-amber-600 {
+  color: var(--gold) !important;
+}
+
+/* ============================================================
+   PROGRESS BAR
+   ============================================================ */
+
+.bg-gray-200 {
+  background-color: var(--muted) !important;
+}
+
+[data-theme="dark"] .bg-gray-200 {
+  background-color: #3D362E !important;
+}
+
+.bg-amber-500 {
+  background-color: var(--gold) !important;
+}
+
+.bg-gradient-to-r.from-amber-500.to-amber-600 {
+  background: linear-gradient(90deg, var(--gold), var(--goldDark)) !important;
+}
+
+/* ============================================================
+   CAREER CARD TEXT
+   ============================================================ */
+
+.career-card h3,
+.career-card .font-serif {
+  color: var(--brown) !important;
+}
+
+.career-card p,
+.career-card .text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+
+.career-card .text-2xl.font-bold {
+  color: var(--goldDark) !important;
+}
+
+[data-theme="dark"] .career-card .text-2xl.font-bold {
+  color: var(--gold) !important;
+}
+
+/* Domain tags in career cards */
+.career-card span.px-2.py-0.5 {
+  background-color: var(--card-bg-tertiary) !important;
+  color: var(--text-secondary) !important;
+}
+
+/* ============================================================
+   INPUT FIELDS
+   ============================================================ */
+
+input, textarea, select {
+  background-color: var(--card-bg-secondary) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+input::placeholder {
+  color: var(--sub) !important;
+  opacity: 0.7;
+}
+
+input:focus {
+  border-color: var(--gold) !important;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(200, 168, 75, 0.1);
+}
+
+/* ============================================================
+   NEXT QUESTION BUTTON
+   ============================================================ */
+
+button[class*="from-amber-500"],
+button[class*="bg-gradient"] {
+  color: var(--btn-primary-text) !important;
+  font-weight: 600;
+}
+
+[data-theme="dark"] button[class*="from-amber-500"],
+[data-theme="dark"] button[class*="bg-gradient"] {
+  color: #1a1008 !important;
+}
+
+/* ============================================================
+   CUSTOM SCROLLBAR
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+/* ============================================================
+   STEP INDICATOR - Fix for light text visibility
+   ============================================================ */
+
+/* Step labels (Interests, Personality, Aptitude) */
+.step-indicator-label,
+.step-item span,
+.flex-col.items-center span.text-xs {
+  color: var(--text) !important;
+  font-weight: 500 !important;
+}
+
+/* Active step label */
+.step-active .step-indicator-label,
+.step-active span.text-xs,
+.flex-col.items-center span.text-xs.font-medium {
+  color: var(--brown) !important;
+  font-weight: 600 !important;
+}
+
+/* Completed step label */
+.step-done .step-indicator-label,
+.step-done span.text-xs {
+  color: var(--text-secondary) !important;
+}
+
+/* Step indicator container */
+.step-indicator {
+  color: var(--text);
+}
+
+/* Step number bubble - default */
+.step-bubble {
+  background-color: var(--card-bg-tertiary) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+/* Step number bubble - active */
+.step-bubble-active {
+  background: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-text) !important;
+}
+
+/* Step number bubble - completed */
+.step-bubble-done {
+  background-color: #5A7A52 !important;
+  color: white !important;
+}
+
+/* Connector line between steps */
+.step-connector {
+  background-color: var(--border) !important;
+}
+
+.step-connector-active {
+  background-color: #5A7A52 !important;
+}
+
+/* Dark mode overrides */
+[data-theme="dark"] .step-indicator-label,
+[data-theme="dark"] .step-item span,
+[data-theme="dark"] .flex-col.items-center span.text-xs {
+  color: var(--text) !important;
+}
+
+[data-theme="dark"] .step-active .step-indicator-label,
+[data-theme="dark"] .step-active span.text-xs {
+  color: var(--brown) !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="dark"] .step-bubble {
+  background-color: var(--muted) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .step-bubble-active {
+  background: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-text) !important;
+}
+
+/* ============================================================
+   SIDEBAR TEXT - Enhanced visibility
+   ============================================================ */
+
+/* Sidebar headings */
+.sidebar-heading h1,
+.sidebar-heading h2,
+.phase-h1 {
+  color: var(--brown) !important;
+}
+
+.sidebar-heading p,
+.phase-sub {
+  color: var(--text-secondary) !important;
+}
+
+/* Liked items label */
+.liked-chips-label,
+.text-sm.font-medium {
+  color: var(--text) !important;
+}
+
+/* Progress text in sidebar */
+.sidebar-qprogress span,
+.sqp-label {
+  color: var(--text-secondary) !important;
+}
+
+/* ============================================================
+   INTEREST CARD TEXT - Enhanced visibility
+   ============================================================ */
+
+/* Card domain label */
+.interest-card-domain,
+.flex.items-center.gap-1\.5.text-sm {
+  color: var(--text-secondary) !important;
+}
+
+/* Card count text */
+.interest-count,
+span.text-sm.font-medium.text-gray-500 {
+  color: var(--text) !important;
+  font-weight: 500;
+}
+
+/* ============================================================
+   ALL GRAY TEXT OVERRIDES - Ensure visibility
+   ============================================================ */
+
+/* Force all gray text to use theme colors */
+.text-gray-400,
+.text-gray-500,
+.text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .text-gray-400,
+[data-theme="dark"] .text-gray-500,
+[data-theme="dark"] .text-gray-600 {
+  color: var(--sub) !important;
+}
+
+/* Light mode specific overrides */
+@media (prefers-color-scheme: light) {
+  .text-gray-400,
+  .text-gray-500 {
+    color: var(--sub) !important;
+  }
+  
+  .text-gray-600 {
+    color: var(--text-secondary) !important;
+  }
+}
+
+/* ============================================================
+   TAG AND BADGE TEXT
+   ============================================================ */
+
+.tag-gold {
+  color: var(--tag-text) !important;
+  font-weight: 600;
+}
+
+/* Step tag (STEP 1 OF 3) */
+.tag-gold i {
+  color: var(--tag-text) !important;
+}
+
+/* ============================================================
+   LIKED CHIPS
+   ============================================================ */
+
+.liked-chip,
+span.inline-flex.items-center.gap-1.px-2\.5.py-1 {
+  background-color: var(--tag-bg) !important;
+  color: var(--tag-text) !important;
+  font-weight: 500;
+}
+
+.liked-chip i {
+  color: var(--tag-text) !important;
+}
+
+
+/* ============================================================
+   RESULTS PAGE - Fix visibility issues
+   ============================================================ */
+
+/* Results page headings */
+.results-h1,
+h1.font-serif {
+  color: var(--brown) !important;
+  font-weight: 700;
+}
+
+.results-sub,
+p.text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+
+/* Aptitude percentage text */
+.font-serif.text-3xl.font-bold.text-amber-700,
+.text-amber-700 {
+  color: var(--goldDark) !important;
+}
+
+[data-theme="dark"] .font-serif.text-3xl.font-bold.text-amber-700,
+[data-theme="dark"] .text-amber-700 {
+  color: var(--gold) !important;
+}
+
+/* Career title in results */
+.font-semibold.text-gray-800,
+.font-semibold.text-gray-900 {
+  color: var(--brown) !important;
+}
+
+/* Points text */
+.text-sm.text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+
+/* Verdict text */
+.text-sm.text-gray-700 {
+  color: var(--text) !important;
+}
+
+/* ============================================================
+   DASHBOARD BUTTON - Critical fix
+   ============================================================ */
+
+/* Go to Dashboard button */
+button.w-full.py-3.bg-gradient-to-br.from-amber-500.to-amber-600,
+a.w-full.py-3.bg-gradient-to-br.from-amber-500.to-amber-600,
+.btn-gold.w-full {
+  color: var(--btn-primary-text) !important;
+  font-weight: 600 !important;
+  background: var(--btn-primary-bg) !important;
+}
+
+/* Ensure button text is visible */
+button.w-full.py-3.bg-gradient-to-br.from-amber-500.to-amber-600 *,
+.btn-gold * {
+  color: var(--btn-primary-text) !important;
+}
+
+/* Button icon */
+button.w-full.py-3.bg-gradient-to-br.from-amber-500.to-amber-600 i,
+.btn-gold i {
+  color: var(--btn-primary-text) !important;
+}
+
+/* Hover state */
+button.w-full.py-3.bg-gradient-to-br.from-amber-500.to-amber-600:hover,
+.btn-gold:hover {
+  color: var(--btn-primary-text) !important;
+}
+
+/* Dark mode override */
+[data-theme="dark"] button.w-full.py-3.bg-gradient-to-br.from-amber-500.to-amber-600,
+[data-theme="dark"] .btn-gold.w-full {
+  color: #1a1008 !important;
+}
+
+[data-theme="dark"] button.w-full.py-3.bg-gradient-to-br.from-amber-500.to-amber-600 *,
+[data-theme="dark"] .btn-gold.w-full * {
+  color: #1a1008 !important;
+}
+
+/* ============================================================
+   RETAKE ASSESSMENT BUTTON
+   ============================================================ */
+
+button.w-full.py-3.border-2.border-gray-300,
+.btn-outline.w-full {
+  color: var(--btn-secondary-text) !important;
+  font-weight: 500 !important;
+  border-color: var(--btn-secondary-border) !important;
+}
+
+button.w-full.py-3.border-2.border-gray-300:hover,
+.btn-outline.w-full:hover {
+  border-color: var(--gold) !important;
+  background: rgba(200, 168, 75, 0.1) !important;
+  color: var(--btn-secondary-text) !important;
+}
+
+[data-theme="dark"] button.w-full.py-3.border-2.border-gray-300,
+[data-theme="dark"] .btn-outline.w-full {
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+/* ============================================================
+   RESULTS CARDS
+   ============================================================ */
+
+/* Top Career Matches heading */
+.font-serif.text-xl.font-bold,
+h3.font-serif {
+  color: var(--brown) !important;
+}
+
+/* Career row text */
+.space-y-3 .flex.items-center.gap-3 span {
+  color: var(--text) !important;
+}
+
+/* Career match percentage */
+.text-sm.font-semibold.text-amber-600 {
+  color: var(--goldDark) !important;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .text-sm.font-semibold.text-amber-600 {
+  color: var(--gold) !important;
+}
+
+/* Liked Interests chips */
+.px-3.py-1\.5.bg-amber-50 {
+  background-color: var(--tag-bg) !important;
+  color: var(--tag-text) !important;
+  font-weight: 500;
+}
+
+.px-3.py-1\.5.bg-amber-50 i {
+  color: var(--tag-text) !important;
+}
+
+/* Personality summary grid */
+.grid.grid-cols-2.gap-3 .flex.items-center.justify-between {
+  background-color: var(--card-bg-secondary) !important;
+}
+
+.grid.grid-cols-2.gap-3 .text-sm.font-medium {
+  color: var(--text-secondary) !important;
+}
+
+.grid.grid-cols-2.gap-3 .text-sm.font-semibold {
+  color: var(--text) !important;
+  font-weight: 600;
+}
+
+/* ============================================================
+   PROFILE CARD SPECIFIC
+   ============================================================ */
+
+/* Career badge in profile */
+.flex.items-center.gap-3.p-4.bg-amber-50 {
+  background-color: var(--tag-bg) !important;
+}
+
+.flex.items-center.gap-3.p-4.bg-amber-50 .font-semibold {
+  color: var(--brown) !important;
+}
+
+.flex.items-center.gap-3.p-4.bg-amber-50 .text-sm {
+  color: var(--text-secondary) !important;
+}
+
+.flex.items-center.gap-3.p-4.bg-amber-50 i {
+  color: var(--gold) !important;
+}
+
+/* Verdict box */
+.flex.items-start.gap-2.p-4.bg-gray-50 {
+  background-color: var(--card-bg-secondary) !important;
+}
+
+.flex.items-start.gap-2.p-4.bg-gray-50 .text-sm {
+  color: var(--text) !important;
+}
+
+.flex.items-start.gap-2.p-4.bg-gray-50 i {
+  color: var(--gold) !important;
+}
+
+/* ============================================================
+   ALL BUTTON TEXT - Global fix
+   ============================================================ */
+
+/* Any button with gradient background */
+button[class*="bg-gradient-to-br"][class*="from-amber"],
+a[class*="bg-gradient-to-br"][class*="from-amber"] {
+  color: white !important;
+}
+
+button[class*="bg-gradient-to-br"][class*="from-amber"] i,
+a[class*="bg-gradient-to-br"][class*="from-amber"] i {
+  color: white !important;
+}
+
+[data-theme="dark"] button[class*="bg-gradient-to-br"][class*="from-amber"],
+[data-theme="dark"] a[class*="bg-gradient-to-br"][class*="from-amber"] {
+  color: #1a1008 !important;
+}
+
+[data-theme="dark"] button[class*="bg-gradient-to-br"][class*="from-amber"] i,
+[data-theme="dark"] a[class*="bg-gradient-to-br"][class*="from-amber"] i {
+  color: #1a1008 !important;
+}
+
+/* ============================================================
+   RESULTS PAGE SPECIFIC FIXES
+   ============================================================ */
+
+/* Go to Dashboard button - direct fix */
+button:has(i.fa-compass),
+a:has(i.fa-compass) {
+  color: var(--btn-primary-text) !important;
+}
+
+button:has(i.fa-compass) i,
+a:has(i.fa-compass) i {
+  color: var(--btn-primary-text) !important;
+}
+
+[data-theme="dark"] button:has(i.fa-compass),
+[data-theme="dark"] a:has(i.fa-compass) {
+  color: #1a1008 !important;
+}
+
+[data-theme="dark"] button:has(i.fa-compass) i,
+[data-theme="dark"] a:has(i.fa-compass) i {
+  color: #1a1008 !important;
+}
+
+/* Retake Assessment button */
+button:has(i.fa-rotate-left) {
+  color: var(--btn-secondary-text) !important;
+  border-color: var(--btn-secondary-border) !important;
+}
+
+button:has(i.fa-rotate-left):hover {
+  border-color: var(--gold) !important;
+  background: rgba(200, 168, 75, 0.1) !important;
+}
+
+[data-theme="dark"] button:has(i.fa-rotate-left) {
+  color: var(--text) !important;
+}
