@@ -1,3 +1,4 @@
+
 import os
 import sys
 from dotenv import load_dotenv
@@ -12,3 +13,6 @@ if not SUPABASE_URL or not SUPABASE_KEY:
     sys.exit("ERROR: SUPABASE_URL and SUPABASE_KEY must be set in supabase_conn.env")
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+
+

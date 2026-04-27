@@ -24,3 +24,33 @@ dist-ssr
 node_modules
 build
 .env
+
+# Node
+node_modules/
+dist/
+build/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+env/
+
+# Environment
+.env
+
+# VS Code / IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# HuggingFace cache (IMPORTANT)
+.cache/

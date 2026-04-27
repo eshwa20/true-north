@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo-bg.png';
+import logo from '../assets/logo-bg.jpeg';
 import './login-style.css';
 
 import { useNavigate } from 'react-router-dom';
@@ -150,8 +150,11 @@ export default function LoginPage() {
         }),
       });
       const data = await res.json();
+   
       if (!res.ok) throw new Error(data.detail || 'Login failed.');
       setAlert({ type: 'success', msg: `Welcome back, ${data.user.username}!` });
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));  
       setTimeout(() => navigate('/assessment'), 1200);
     } catch (err) {
       setAlert({ type: 'error', msg: err.message });
@@ -185,6 +188,8 @@ export default function LoginPage() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.detail || 'Registration failed.');
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user)); 
       setAlert({ type: 'success', msg: `Account created! Welcome, ${data.user.username}.` });
       // Auto-switch to login after successful registration
       setTimeout(() => switchTab('login'), 2000);
