@@ -1,0 +1,40 @@
+/* Re-use premium button styling for consistency */
+.btn-premium {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #7C3B65, #9b5a84);
+  color: white;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  transition: all .35s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-premium:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(124, 59, 101, 0.3);
+}
+
+.btn-premium::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: 0.8s;
+}
+
+.btn-premium:hover::after {
+  left: 100%;
+}
+
+/* Ensure smooth image scaling bounds */
+.group {
+  /* Forces the border-radius to cut off the zoomed image perfectly */
+  transform: translateZ(0); 
+}

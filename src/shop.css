@@ -1,0 +1,15 @@
+.logo-shop {
+  height: 90px;
+  width: auto;
+  object-fit: contain;
+}
+
+.shop-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+.shop-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
