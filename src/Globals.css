@@ -547,10 +547,6 @@ button.w-full span.w-8.h-8 {
   color: var(--text-secondary) !important;
 }
 
-/* ============================================================
-   INPUT FIELDS
-   ============================================================ */
-
 input, textarea, select {
   background-color: var(--card-bg-secondary) !important;
   border-color: var(--border) !important;
@@ -568,9 +564,6 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(200, 168, 75, 0.1);
 }
 
-/* ============================================================
-   NEXT QUESTION BUTTON
-   ============================================================ */
 
 button[class*="from-amber-500"],
 button[class*="bg-gradient"] {
@@ -583,9 +576,7 @@ button[class*="bg-gradient"] {
   color: #1a1008 !important;
 }
 
-/* ============================================================
-   CUSTOM SCROLLBAR
-   ============================================================ */
+
 
 ::-webkit-scrollbar {
   width: 8px;
@@ -604,9 +595,6 @@ button[class*="bg-gradient"] {
   background: var(--gold);
 }
 
-/* ============================================================
-   STEP INDICATOR - Fix for light text visibility
-   ============================================================ */
 
 /* Step labels (Interests, Personality, Aptitude) */
 .step-indicator-label,
@@ -687,9 +675,6 @@ button[class*="bg-gradient"] {
   color: var(--btn-primary-text) !important;
 }
 
-/* ============================================================
-   SIDEBAR TEXT - Enhanced visibility
-   ============================================================ */
 
 /* Sidebar headings */
 .sidebar-heading h1,
@@ -715,9 +700,6 @@ button[class*="bg-gradient"] {
   color: var(--text-secondary) !important;
 }
 
-/* ============================================================
-   INTEREST CARD TEXT - Enhanced visibility
-   ============================================================ */
 
 /* Card domain label */
 .interest-card-domain,
@@ -732,9 +714,6 @@ span.text-sm.font-medium.text-gray-500 {
   font-weight: 500;
 }
 
-/* ============================================================
-   ALL GRAY TEXT OVERRIDES - Ensure visibility
-   ============================================================ */
 
 /* Force all gray text to use theme colors */
 .text-gray-400,
@@ -761,9 +740,7 @@ span.text-sm.font-medium.text-gray-500 {
   }
 }
 
-/* ============================================================
-   TAG AND BADGE TEXT
-   ============================================================ */
+
 
 .tag-gold {
   color: var(--tag-text) !important;
@@ -774,10 +751,6 @@ span.text-sm.font-medium.text-gray-500 {
 .tag-gold i {
   color: var(--tag-text) !important;
 }
-
-/* ============================================================
-   LIKED CHIPS
-   ============================================================ */
 
 .liked-chip,
 span.inline-flex.items-center.gap-1.px-2\.5.py-1 {
@@ -791,9 +764,6 @@ span.inline-flex.items-center.gap-1.px-2\.5.py-1 {
 }
 
 
-/* ============================================================
-   RESULTS PAGE - Fix visibility issues
-   ============================================================ */
 
 /* Results page headings */
 .results-h1,
@@ -834,9 +804,6 @@ p.text-gray-600 {
   color: var(--text) !important;
 }
 
-/* ============================================================
-   DASHBOARD BUTTON - Critical fix
-   ============================================================ */
 
 /* Go to Dashboard button */
 button.w-full.py-3.bg-gradient-to-br.from-amber-500.to-amber-600,
@@ -876,9 +843,7 @@ button.w-full.py-3.bg-gradient-to-br.from-amber-500.to-amber-600:hover,
   color: #1a1008 !important;
 }
 
-/* ============================================================
-   RETAKE ASSESSMENT BUTTON
-   ============================================================ */
+
 
 button.w-full.py-3.border-2.border-gray-300,
 .btn-outline.w-full {
@@ -900,9 +865,7 @@ button.w-full.py-3.border-2.border-gray-300:hover,
   border-color: var(--border) !important;
 }
 
-/* ============================================================
-   RESULTS CARDS
-   ============================================================ */
+
 
 /* Top Career Matches heading */
 .font-serif.text-xl.font-bold,
@@ -950,9 +913,7 @@ h3.font-serif {
   font-weight: 600;
 }
 
-/* ============================================================
-   PROFILE CARD SPECIFIC
-   ============================================================ */
+
 
 /* Career badge in profile */
 .flex.items-center.gap-3.p-4.bg-amber-50 {
@@ -984,9 +945,6 @@ h3.font-serif {
   color: var(--gold) !important;
 }
 
-/* ============================================================
-   ALL BUTTON TEXT - Global fix
-   ============================================================ */
 
 /* Any button with gradient background */
 button[class*="bg-gradient-to-br"][class*="from-amber"],
@@ -1009,9 +967,6 @@ a[class*="bg-gradient-to-br"][class*="from-amber"] i {
   color: #1a1008 !important;
 }
 
-/* ============================================================
-   RESULTS PAGE SPECIFIC FIXES
-   ============================================================ */
 
 /* Go to Dashboard button - direct fix */
 button:has(i.fa-compass),
@@ -1047,4 +1002,125 @@ button:has(i.fa-rotate-left):hover {
 
 [data-theme="dark"] button:has(i.fa-rotate-left) {
   color: var(--text) !important;
+}
+
+/* ============================================================
+   NEXT QUESTION / ACTION BUTTONS - Enhanced visibility
+   ============================================================ */
+
+/* Primary action button (Next Question, See Results) */
+button.w-full.py-3\.5.bg-gradient-to-r,
+button[class*="from-[var(--gold)]"],
+button[class*="bg-gradient-to-r"] {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--goldDark) 100%) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  border-radius: 0.75rem !important;
+  padding: 1rem 2rem !important;
+  box-shadow: 0 4px 12px rgba(200, 168, 75, 0.2) !important;
+  transition: all 0.2s ease !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+/* Hover state */
+button.w-full.py-3\.5.bg-gradient-to-r:hover,
+button[class*="from-[var(--gold)"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(200, 168, 75, 0.3) !important;
+}
+
+/* Dark mode */
+[data-theme="dark"] button.w-full.py-3\.5.bg-gradient-to-r,
+[data-theme="dark"] button[class*="from-[var(--gold)"] {
+  color: #1a1008 !important;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--goldDark) 100%) !important;
+  font-weight: 700 !important;
+}
+
+/* Disabled state */
+button.w-full.py-3\.5.bg-gradient-to-r:disabled,
+button[class*="from-[var(--gold)"]:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* ============================================================
+   ALL ACTION BUTTONS - Global visibility fix
+   ============================================================ */
+
+/* Any submit/action button */
+button[type="submit"],
+button:has(i.fa-arrow-right),
+button:has(i.fa-flag-checkered) {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--goldDark) 100%) !important;
+  color: white !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="dark"] button[type="submit"],
+[data-theme="dark"] button:has(i.fa-arrow-right),
+[data-theme="dark"] button:has(i.fa-flag-checkered) {
+  color: #1a1008 !important;
+}
+
+/* ============================================================
+   OPTION BUTTONS IN APTITUDE TEST
+   ============================================================ */
+
+/* Default option button */
+button.w-full.flex.items-center.gap-4.p-4.rounded-xl {
+  background-color: var(--card-bg-secondary) !important;
+  color: var(--text) !important;
+  border: 2px solid var(--border) !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover state */
+button.w-full.flex.items-center.gap-4.p-4.rounded-xl:hover:not(:disabled) {
+  border-color: var(--gold) !important;
+  background-color: var(--card-bg) !important;
+}
+
+/* Option letter badge */
+button.w-full.flex.items-center.gap-4.p-4.rounded-xl span.w-8.h-8 {
+  background-color: var(--card-bg-tertiary) !important;
+  color: var(--text) !important;
+  font-weight: 600 !important;
+}
+
+/* Selected option */
+button.w-full.flex.items-center.gap-4.p-4.rounded-xl.border-\[var\(--gold\)\] {
+  border-color: var(--gold) !important;
+  background-color: rgba(200, 168, 75, 0.1) !important;
+}
+
+/* Correct answer */
+button.w-full.flex.items-center.gap-4.p-4.rounded-xl.border-green-500 {
+  border-color: #5A7A52 !important;
+  background-color: rgba(90, 122, 82, 0.1) !important;
+}
+
+/* Wrong answer */
+button.w-full.flex.items-center.gap-4.p-4.rounded-xl.border-red-500 {
+  border-color: #C0392B !important;
+  background-color: rgba(192, 57, 43, 0.08) !important;
+}
+
+/* Disabled options after answering */
+button.w-full.flex.items-center.gap-4.p-4.rounded-xl.opacity-50 {
+  opacity: 0.5 !important;
+}
+
+/* Dark mode option buttons */
+[data-theme="dark"] button.w-full.flex.items-center.gap-4.p-4.rounded-xl {
+  background-color: var(--card-bg-secondary) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] button.w-full.flex.items-center.gap-4.p-4.rounded-xl:hover:not(:disabled) {
+  border-color: var(--gold) !important;
 }
