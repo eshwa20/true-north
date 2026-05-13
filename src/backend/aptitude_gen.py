@@ -1,17 +1,20 @@
-<<<<<<< HEAD
 """
 aptitude_gen.py
 ===============
-TrueNorth · Groq Aptitude Question Generator
+TrueNorth · Groq AI-Powered Assessment Engine
 -----------------------------------------------
-POST /api/generate-aptitude
-Uses the groq SDK
+POST /api/generate-interests    - AI generates interest domains & fields
+POST /api/generate-personality  - AI generates adaptive personality questions
+POST /api/recommend-careers     - AI recommends careers based on profile
+POST /api/generate-aptitude     - AI generates career-specific aptitude test
 """
 
 import os
 import re
 import json
+import time
 import logging
+from typing import Any
 from groq import Groq
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
@@ -19,378 +22,413 @@ from dotenv import load_dotenv
 
 load_dotenv("supabase_conn.env")
 
-log    = logging.getLogger("aptitude_gen")
+logging.basicConfig(level=logging.INFO)
+log = logging.getLogger("aptitude_gen")
 router = APIRouter()
 
 # ── Configure Groq client ────────────────────────────────────
 _api_key = os.getenv("GROQ_API_KEY")
+
 if not _api_key:
-    log.warning("GROQ_API_KEY not set — /api/generate-aptitude will fail at runtime")
+    log.error("❌ GROQ_API_KEY not set!")
+else:
+    log.info(f"✅ GROQ_API_KEY loaded (starts with: {_api_key[:10]}...)")
 
-client = Groq(api_key=_api_key)
+client = Groq(api_key=_api_key) if _api_key else None
 
-# ── Request model ────────────────────────────────────────────
+# ── Simple in-memory cache ────────────────────────────────────
+cache: dict = {}
+CACHE_DURATION = 7200  # 2 hours
+
+
+def get_cached(key: str):
+    if key in cache:
+        data, timestamp = cache[key]
+        if time.time() - timestamp < CACHE_DURATION:
+            log.info(f"📦 Cache hit: {key}")
+            return data
+        del cache[key]
+    return None
+
+
+def set_cache(key: str, data):
+    cache[key] = (data, time.time())
+    if len(cache) > 100:
+        oldest = min(cache.keys(), key=lambda k: cache[k][1])
+        del cache[oldest]
+
+
+# ── Request Models ────────────────────────────────────────────
 class AptitudeRequest(BaseModel):
-    career:      str
-    interests:   list[str]
-    personality: dict
+    career: str
+    interests: list[Any] = []
+    personality: list[Any] = []
+    ageGroup: str = "18+"
+    difficultyGuidance: str = ""
 
 
-# ── Prompt builder ───────────────────────────────────────────
-def build_prompt(career: str, interests: list[str], personality: dict) -> str:
-    return f"""You are an expert aptitude test designer for a career guidance platform.
-
-Generate exactly 10 aptitude test questions for a student interested in becoming a "{career}".
-
-Student profile:
-- Top interests: {", ".join(interests[:5]) if interests else "not specified"}
-- Personality traits: {json.dumps(personality)}
-
-STRICT REQUIREMENTS:
-1. Every question must test a real, practical skill needed for "{career}"
-2. Difficulty distribution: exactly 3 easy, 4 medium, 3 hard
-3. Points must be: easy=10, medium=20, hard=30
-4. Time must be:   easy=30, medium=45, hard=60
-5. Each question must have exactly 4 answer options
-6. "correct" is a 0-based index — must be 0, 1, 2, or 3
-7. Wrong options must be plausible, not obviously incorrect
-8. Test judgment and practical thinking, not memorization
-
-You MUST respond with ONLY valid JSON. No markdown, no backticks, no explanation before or after.
-
-{{
-  "questions": [
-    {{
-      "id": 1,
-      "question": "question text here",
-      "options": ["Option A", "Option B", "Option C", "Option D"],
-      "correct": 1,
-      "difficulty": "easy",
-      "points": 10,
-      "time": 30,
-      "skill": "specific skill being tested"
-    }}
-  ]
-}}"""
+class InterestsRequest(BaseModel):
+    ageGroup: str
 
 
-# ── Validator ────────────────────────────────────────────────
-VALID_DIFFICULTIES = {"easy", "medium", "hard"}
-VALID_POINTS       = {10, 20, 30}
-VALID_TIMES        = {30, 45, 60}
-
-def validate_questions(questions: list[dict]) -> list[dict]:
-    valid  = []
-    issues = []
-
-    for i, q in enumerate(questions, start=1):
-        errs = []
-
-        for field in ("id", "question", "options", "correct", "difficulty", "points", "time", "skill"):
-            if field not in q:
-                errs.append(f"missing '{field}'")
-
-        if errs:
-            issues.append(f"Q{i}: {', '.join(errs)}")
-            continue
-
-        if not isinstance(q["options"], list) or len(q["options"]) != 4:
-            errs.append("options must be a list of exactly 4 strings")
-        if not isinstance(q["correct"], int) or q["correct"] not in range(4):
-            errs.append(f"correct must be 0-3, got {q['correct']!r}")
-        if q["difficulty"] not in VALID_DIFFICULTIES:
-            errs.append(f"difficulty must be easy/medium/hard, got {q['difficulty']!r}")
-        if q["points"] not in VALID_POINTS:
-            errs.append(f"points must be 10/20/30, got {q['points']!r}")
-        if q["time"] not in VALID_TIMES:
-            errs.append(f"time must be 30/45/60, got {q['time']!r}")
-        if len(str(q.get("question", "")).strip()) < 10:
-            errs.append("question text too short")
-
-        if errs:
-            issues.append(f"Q{i}: {', '.join(errs)}")
-        else:
-            valid.append(q)
-
-    if len(valid) < 8:
-        raise ValueError(
-            f"Only {len(valid)}/10 questions passed validation. "
-            f"Issues: {'; '.join(issues) if issues else 'unknown'}"
-        )
-
-    return valid[:10]
+class PersonalityRequest(BaseModel):
+    ageGroup: str
+    interests: list[Any] = []
+    previousAnswers: list[Any] = []
 
 
-# ── Groq caller ──────────────────────────────────────────────
-def call_groq(prompt: str) -> list[dict]:
+class CareerRecommendationRequest(BaseModel):
+    ageGroup: str
+    interests: list[Any] = []
+    personality: list[Any] = []
+    preferredDomains: list[str] = []
+    domainWeights: list[Any] = []
+    personalityTraits: list[str] = []
+
+
+# ── Helper: Call Groq API ────────────────────────────────────
+def call_groq(
+    system_prompt: str,
+    user_prompt: str,
+    temperature: float = 0.8,
+    max_tokens: int = 2000,
+) -> dict:
+    if client is None:
+        raise RuntimeError("Groq client not initialized — check GROQ_API_KEY")
+
+    time.sleep(0.5)  # Light rate-limit protection
+
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="llama-3.1-8b-instant",
         messages=[
-            {
-                "role": "system",
-                "content": "You are an expert aptitude test designer. Always respond with valid JSON only, no markdown, no extra text."
-            },
-            {"role": "user", "content": prompt}
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
         ],
-        temperature=0.7,
-        max_tokens=3000,
+        temperature=temperature,
+        max_tokens=max_tokens,
         response_format={"type": "json_object"},
     )
 
     raw = response.choices[0].message.content.strip()
-    raw = re.sub(r"^```(?:json)?", "", raw, flags=re.MULTILINE).strip()
-    raw = re.sub(r"```$",          "", raw, flags=re.MULTILINE).strip()
-
-    data = json.loads(raw)
-
-    if "questions" not in data or not isinstance(data["questions"], list):
-        raise ValueError("Response JSON missing 'questions' array")
-
-    return data["questions"]
+    # Strip accidental markdown fences
+    raw = re.sub(r"^```(?:json)?\s*", "", raw, flags=re.MULTILINE)
+    raw = re.sub(r"\s*```$", "", raw, flags=re.MULTILINE)
+    return json.loads(raw.strip())
 
 
-# ── Route ────────────────────────────────────────────────────
+# ── 1. Generate Interests ─────────────────────────────────────
+@router.post("/api/generate-interests")
+async def generate_interests(body: InterestsRequest):
+    log.info(f"🎯 Interests for age: {body.ageGroup}")
+
+    cache_key = f"interests:{body.ageGroup}"
+    cached = get_cached(cache_key)
+    if cached:
+        return cached
+
+    if not _api_key or client is None:
+        raise HTTPException(
+            status_code=503,
+            detail="AI service not configured. Please set GROQ_API_KEY in your environment.",
+        )
+
+    for attempt in range(3):
+        try:
+            prompt = f"""Generate 6-7 interest domains with career fields for a person aged {body.ageGroup}.
+
+Each domain MUST have:
+- id (string, e.g. "tech"), name, icon (Font Awesome class like "fa-laptop-code"), description
+- 4-7 fields, each with: id, label, icon (Font Awesome fa- prefix), trending (boolean), description
+
+Mark currently booming 2025-2026 fields as trending: true.
+Use Font Awesome icons only (fa- prefix). No emojis in icon fields.
+
+Respond with ONLY valid JSON in this format:
+{{"domains": [{{"id":"tech","name":"Technology","icon":"fa-laptop-code","description":"...","fields":[{{"id":"ai","label":"AI & Machine Learning","icon":"fa-robot","trending":true,"description":"..."}}]}}]}}"""
+
+            data = call_groq(
+                "You are a career counselor. Always respond with valid JSON only, no preamble.",
+                prompt,
+                temperature=0.7,
+                max_tokens=2500,
+            )
+
+            if data.get("domains") and len(data["domains"]) > 0:
+                set_cache(cache_key, data)
+                return data
+
+            log.warning(f"⚠️ Attempt {attempt + 1}: Empty domains")
+        except Exception as e:
+            log.error(f"❌ Attempt {attempt + 1}: {e}")
+            if attempt == 2:
+                raise HTTPException(
+                    status_code=502,
+                    detail=f"Failed to generate interests after 3 attempts: {str(e)}",
+                )
+
+    raise HTTPException(status_code=502, detail="Failed to generate interests after 3 attempts.")
+
+
+# ── 2. Generate Personality Questions ─────────────────────────
+@router.post("/api/generate-personality")
+async def generate_personality(body: PersonalityRequest):
+    log.info(f"🎯 Personality (prev answers: {len(body.previousAnswers)})")
+
+    if not _api_key or client is None:
+        raise HTTPException(
+            status_code=503,
+            detail="AI service not configured. Please set GROQ_API_KEY.",
+        )
+
+    is_first = len(body.previousAnswers) == 0
+
+    for attempt in range(3):
+        try:
+            if is_first:
+                prompt = f"""Generate exactly 10 personality assessment questions for age group: {body.ageGroup}.
+
+Each question MUST have:
+- id (q1, q2, ... q10)
+- question (the question text, at least 10 characters)
+- category (one of: Work Style, Decision Making, Motivation, Team Role, Learning, Lifestyle)
+- options: exactly 4 objects, each with "label" (display text) and "value" (snake_case key)
+
+Cover these topics: lifestyle, work style, decision making, motivation, team role, adaptability, environment, feedback, learning, stress.
+
+Return ONLY valid JSON:
+{{"questions":[{{"id":"q1","question":"...","category":"Work Style","options":[{{"label":"...","value":"..."}}]}}]}}"""
+            else:
+                prev = json.dumps(body.previousAnswers[-5:])
+                prompt = f"""Based on these previous personality answers: {prev}
+
+Generate exactly 5 MORE follow-up personality questions that dig deeper.
+
+Each MUST have: id (q11-q15), question, category, options (exactly 4 with label/value).
+
+Return ONLY valid JSON:
+{{"questions":[{{"id":"q11","question":"...","category":"Deep Dive","options":[{{"label":"...","value":"..."}}]}}]}}"""
+
+            data = call_groq(
+                "You are a personality assessment expert. Respond with valid JSON only.",
+                prompt,
+                temperature=0.8,
+                max_tokens=2000,
+            )
+
+            questions = data.get("questions", [])
+            valid = []
+            for q in questions:
+                if not q.get("question") or len(q.get("question", "").strip()) < 5:
+                    continue
+                if not q.get("options") or len(q.get("options", [])) < 4:
+                    continue
+                if not q.get("id"):
+                    q["id"] = f"q_{len(valid) + 1}"
+                if not q.get("category"):
+                    q["category"] = "Personality"
+                # Normalize options
+                cleaned_opts = []
+                for opt in q.get("options", [])[:4]:
+                    if isinstance(opt, str):
+                        cleaned_opts.append({"label": opt, "value": opt.lower().replace(" ", "_")})
+                    else:
+                        label = opt.get("label") or opt.get("value", "")
+                        value = opt.get("value") or label.lower().replace(" ", "_")
+                        cleaned_opts.append({"label": label, "value": value})
+                q["options"] = cleaned_opts
+                valid.append(q)
+
+            if len(valid) > 0:
+                log.info(f"✅ {len(valid)} valid personality questions")
+                return {"questions": valid}
+
+            log.warning(f"⚠️ Attempt {attempt + 1}: No valid questions")
+        except Exception as e:
+            log.error(f"❌ Attempt {attempt + 1}: {e}")
+
+    raise HTTPException(status_code=502, detail="Failed to generate personality questions after 3 attempts.")
+
+
+# ── 3. Recommend Careers (80% interests, 20% personality) ────
+@router.post("/api/recommend-careers")
+async def recommend_careers(body: CareerRecommendationRequest):
+    log.info(f"🎯 Career recs for age: {body.ageGroup}, Domains: {body.preferredDomains}")
+
+    cache_key = f"careers:{body.ageGroup}:{'-'.join(sorted(body.preferredDomains))}"
+    cached = get_cached(cache_key)
+    if cached:
+        return cached
+
+    if not _api_key or client is None:
+        raise HTTPException(
+            status_code=503,
+            detail="AI service not configured. Please set GROQ_API_KEY.",
+        )
+
+    for attempt in range(3):
+        try:
+            domain_info = [
+                f"{dw['domain']} ({dw['weight']}% of selections)"
+                for dw in body.domainWeights
+            ]
+
+            interests_str = json.dumps([
+                {"label": i.get("label", ""), "domain": i.get("domainName", "")}
+                for i in body.interests[:8]
+            ])
+
+            prompt = f"""Recommend exactly 6 career paths for a person aged {body.ageGroup}.
+
+CRITICAL WEIGHTING RULES:
+- 80% weight on interests (most important)
+- 20% weight on personality traits
+
+DOMAIN PREFERENCES (by interest frequency):
+{chr(10).join(f'- {d}' for d in domain_info)}
+
+SELECTED INTERESTS: {interests_str}
+
+PERSONALITY TRAITS (20% influence only): {', '.join(body.personalityTraits[:5])}
+
+SELECTION RULES:
+- At least 5 of 6 careers MUST come from their top interest domains
+- Only 1 wildcard from a related domain is allowed
+- Use real career titles that match the JSON list below
+
+Return ONLY valid JSON:
+{{"careers":[{{"id":"tech1","title":"Software Developer","category":"Technology","match":87,"description":"Build software applications and systems","skills":["Programming","Problem Solving","Algorithms"],"education_path":"Computer Science degree or bootcamp","salary_range":"$70k-$150k","growth_rate":"22%"}}]}}"""
+
+            data = call_groq(
+                "You are a career counselor. Respond with valid JSON only.",
+                prompt,
+                temperature=0.7,
+                max_tokens=2000,
+            )
+
+            if data.get("careers") and len(data["careers"]) >= 4:
+                set_cache(cache_key, data)
+                return data
+
+            log.warning(f"⚠️ Attempt {attempt + 1}: Only {len(data.get('careers', []))} careers")
+        except Exception as e:
+            log.error(f"❌ Attempt {attempt + 1}: {e}")
+
+    raise HTTPException(status_code=502, detail="Failed to recommend careers after 3 attempts.")
+
+
+# ── 4. Generate Aptitude Questions ────────────────────────────
 @router.post("/api/generate-aptitude")
 async def generate_aptitude(body: AptitudeRequest):
+    log.info(f"🎯 Aptitude: {body.career}, Age: {body.ageGroup}")
+
     if not body.career or len(body.career.strip()) < 2:
         raise HTTPException(status_code=400, detail="Career field is required.")
 
-    if not _api_key:
+    cache_key = f"aptitude:{body.career.lower().replace(' ', '_')}:{body.ageGroup}"
+    cached = get_cached(cache_key)
+    if cached:
+        return cached
+
+    if not _api_key or client is None:
         raise HTTPException(
-            status_code=500,
-            detail="GROQ_API_KEY is not configured on the server."
+            status_code=503,
+            detail="AI service not configured. Please set GROQ_API_KEY.",
         )
 
-    MAX_RETRIES = 3
-    last_error  = "Unknown error"
-
-    for attempt in range(1, MAX_RETRIES + 1):
-        try:
-            log.info(f"Generating questions for '{body.career}' (attempt {attempt}/{MAX_RETRIES})")
-
-            prompt        = build_prompt(body.career, body.interests, body.personality)
-            raw_questions = call_groq(prompt)
-            validated     = validate_questions(raw_questions)
-
-            total_points = sum(q["points"] for q in validated)
-            log.info(f"Success: {len(validated)} questions, {total_points} pts for '{body.career}'")
-
-            return {
-                "questions":    validated,
-                "career":       body.career,
-                "total_points": total_points,
-            }
-
-        except json.JSONDecodeError as e:
-            last_error = f"Groq returned invalid JSON: {e}"
-            log.warning(f"Attempt {attempt}: {last_error}")
-
-        except ValueError as e:
-            last_error = str(e)
-            log.warning(f"Attempt {attempt}: Validation failed — {last_error}")
-
-        except Exception as e:
-            last_error = str(e)
-            log.error(f"Attempt {attempt}: Unexpected error — {last_error}")
-
-    raise HTTPException(
-        status_code=502,
-        detail=f"Failed to generate questions after {MAX_RETRIES} attempts: {last_error}",
+    difficulty_note = body.difficultyGuidance or (
+        "Very simple, age-appropriate questions." if body.ageGroup == "10-15"
+        else "Professional-level questions testing real knowledge."
     )
-=======
-"""
-aptitude_gen.py
-===============
-TrueNorth · GPT Aptitude Question Generator
---------------------------------------------
-Adds  POST /api/generate-aptitude  to your FastAPI app.
-Import and include this router in main.py.
 
-Add to main.py:
-    from aptitude_gen import router as aptitude_router
-    app.include_router(aptitude_router)
+    for attempt in range(3):
+        try:
+            prompt = f"""Generate exactly 10 aptitude test questions for a {body.career} career. Age group: {body.ageGroup}.
 
-.env additions:
-    OPENAI_API_KEY=sk-...
-"""
+Difficulty note: {difficulty_note}
 
-import os
-import re
-import json
-import logging
-from openai import OpenAI
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
-from dotenv import load_dotenv  # <--- Add this
+REQUIREMENTS:
+- 3 easy questions (points: 10, time: 40 seconds)
+- 4 medium questions (points: 20, time: 50 seconds)
+- 3 hard questions (points: 30, time: 60 seconds)
+- Each question must have EXACTLY 4 options (plain strings, NOT objects)
+- "correct" is a 0-based index (0, 1, 2, or 3)
+- Each question tests a specific, named skill for this career
+- Questions must be realistic and test actual job knowledge
 
-load_dotenv("supabase_conn.env")
+Return ONLY valid JSON:
+{{"questions":[{{"question":"What does REST stand for in web APIs?","options":["Representational State Transfer","Remote Execution Service Tool","Reliable Endpoint Storage Transfer","Resource Encoding Standard Transfer"],"correct":0,"difficulty":"easy","points":10,"time":40,"skill":"Web APIs"}}]}}"""
 
-log    = logging.getLogger("aptitude_gen")
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-router = APIRouter()
+            data = call_groq(
+                "You are an aptitude test designer. Respond with valid JSON only.",
+                prompt,
+                temperature=0.9,  # Higher temp for variety each time
+                max_tokens=2500,
+            )
 
-# ── Validation constants ─────────────────────────────────────
-VALID_DIFFICULTIES = {"easy", "medium", "hard"}
-VALID_POINTS       = {10, 20, 30}
-VALID_TIMES        = {30, 45, 60}
+            questions = data.get("questions", [])
+            valid = []
+            for i, q in enumerate(questions, start=1):
+                # Validate question text
+                if not q.get("question") or len(q.get("question", "").strip()) < 5:
+                    continue
+                # Validate options — must be exactly 4 strings
+                opts = q.get("options", [])
+                if len(opts) != 4:
+                    continue
+                # Flatten objects to strings if needed
+                str_opts = []
+                for o in opts:
+                    if isinstance(o, str):
+                        str_opts.append(o)
+                    elif isinstance(o, dict):
+                        str_opts.append(o.get("label") or o.get("text") or o.get("value") or str(o))
+                    else:
+                        str_opts.append(str(o))
+                if len(str_opts) != 4:
+                    continue
 
-# ── Request model ────────────────────────────────────────────
-class AptitudeRequest(BaseModel):
-    career:      str
-    interests:   list[str]
-    personality: dict
-    prompt:      str  # built by frontend
+                q["id"] = i
+                q["options"] = str_opts
+                if q.get("difficulty") not in ["easy", "medium", "hard"]:
+                    q["difficulty"] = "medium"
+                if q.get("points") not in [10, 20, 30]:
+                    q["points"] = 20
+                if q.get("time") not in [30, 40, 45, 50, 60]:
+                    q["time"] = 45
+                if not q.get("skill"):
+                    q["skill"] = "General Knowledge"
+                correct = q.get("correct")
+                if not isinstance(correct, int) or correct not in [0, 1, 2, 3]:
+                    q["correct"] = 0
+                valid.append(q)
 
+            if len(valid) >= 5:
+                result = {
+                    "questions": valid[:10],
+                    "career": body.career,
+                    "total_points": sum(q["points"] for q in valid[:10]),
+                }
+                set_cache(cache_key, result)
+                return result
 
-# ── Validator ────────────────────────────────────────────────
-def validate_questions(questions: list[dict], career: str) -> list[dict]:
-    """
-    Ensures every question meets structural and content standards.
-    Raises ValueError listing all issues found.
-    """
-    issues  = []
-    valid   = []
+            log.warning(f"⚠️ Attempt {attempt + 1}: Only {len(valid)} valid questions")
+        except Exception as e:
+            log.error(f"❌ Attempt {attempt + 1}: {e}")
 
-    for i, q in enumerate(questions, start=1):
-        q_issues = []
-
-        # Required fields present
-        for field in ["id", "question", "options", "correct", "difficulty", "points", "time", "skill"]:
-            if field not in q:
-                q_issues.append(f"missing field '{field}'")
-
-        if q_issues:
-            issues.append(f"Q{i}: {', '.join(q_issues)}")
-            continue
-
-        # Structural checks
-        if not isinstance(q["options"], list) or len(q["options"]) != 4:
-            q_issues.append("must have exactly 4 options")
-
-        if not isinstance(q["correct"], int) or q["correct"] not in range(4):
-            q_issues.append("correct must be 0–3")
-
-        if q["difficulty"] not in VALID_DIFFICULTIES:
-            q_issues.append(f"difficulty must be easy/medium/hard, got '{q['difficulty']}'")
-
-        if q["points"] not in VALID_POINTS:
-            q_issues.append(f"points must be 10/20/30, got {q['points']}")
-
-        if q["time"] not in VALID_TIMES:
-            q_issues.append(f"time must be 30/45/60, got {q['time']}")
-
-        if len(q["question"].strip()) < 15:
-            q_issues.append("question text too short")
-
-        if q_issues:
-            issues.append(f"Q{i}: {', '.join(q_issues)}")
-        else:
-            valid.append(q)
-
-    if len(valid) < 8:
-        raise ValueError(f"Only {len(valid)}/10 questions passed validation. Issues: {'; '.join(issues)}")
-
-    return valid[:10]
+    raise HTTPException(status_code=502, detail="Failed to generate aptitude questions after 3 attempts.")
 
 
-# ── GPT caller ───────────────────────────────────────────────
-def call_gpt(prompt: str) -> list[dict]:
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",   # fast + cheap; swap to gpt-4o for higher quality
-        messages=[
-            {
-                "role": "system",
-                "content": (
-                    "You are an expert aptitude test designer for career guidance platforms. "
-                    "You always respond with valid JSON only — no markdown, no explanation, no backticks."
-                ),
-            },
-            {"role": "user", "content": prompt},
+# ── Health check ──────────────────────────────────────────────
+@router.get("/api/aptitude-health")
+async def health_check():
+    return {
+        "status": "ok",
+        "groq_configured": _api_key is not None and client is not None,
+        "cache_size": len(cache),
+        "endpoints": [
+            "POST /api/generate-interests",
+            "POST /api/generate-personality",
+            "POST /api/recommend-careers",
+            "POST /api/generate-aptitude",
         ],
-        temperature=0.7,
-        max_tokens=3000,
-    )
-
-    raw = response.choices[0].message.content.strip()
-
-    # Strip markdown fences if model adds them despite instructions
-    raw = re.sub(r"^```(?:json)?", "", raw).strip()
-    raw = re.sub(r"```$", "", raw).strip()
-
-    data = json.loads(raw)
-
-    if "questions" not in data or not isinstance(data["questions"], list):
-        raise ValueError("Response missing 'questions' array")
-
-    return data["questions"]
-
-
-# ── Main route ───────────────────────────────────────────────
-@router.post("/api/generate-aptitude")
-async def generate_aptitude(body: AptitudeRequest):
-    if not body.career or len(body.career) < 2:
-        raise HTTPException(status_code=400, detail="Career field is required.")
-
-    MAX_RETRIES = 3
-
-    for attempt in range(1, MAX_RETRIES + 1):
-        try:
-            log.info(f"Generating aptitude questions for '{body.career}' (attempt {attempt})")
-
-            # Build a fresh, explicit prompt each retry
-            prompt = f"""
-You are an expert aptitude test designer for career guidance.
-
-Generate exactly 10 aptitude test questions for a student aiming to become a "{body.career}".
-
-Student profile:
-- Top interests: {', '.join(body.interests[:5]) if body.interests else 'not specified'}
-- Personality: {json.dumps(body.personality)}
-
-STRICT REQUIREMENTS:
-1. All questions must directly relate to the "{body.career}" role
-2. Difficulty distribution: 3 easy, 4 medium, 3 hard
-3. Points: easy=10, medium=20, hard=30
-4. Time per question: easy=30s, medium=45s, hard=60s
-5. Every question must have exactly 4 answer options
-6. "correct" is a 0-based index (0, 1, 2, or 3)
-7. Wrong options must be plausible, not obviously incorrect
-8. Test practical skill and judgment, not trivia
-
-Respond with ONLY this JSON structure, no other text:
-{{
-  "questions": [
-    {{
-      "id": 1,
-      "question": "question text here",
-      "options": ["Option A text", "Option B text", "Option C text", "Option D text"],
-      "correct": 1,
-      "difficulty": "easy",
-      "points": 10,
-      "time": 30,
-      "skill": "specific skill being tested"
-    }}
-  ]
-}}
-"""
-            raw_questions = call_gpt(prompt)
-            validated     = validate_questions(raw_questions, body.career)
-
-            log.info(f"Successfully generated {len(validated)} questions for '{body.career}'")
-            return {"questions": validated, "career": body.career, "total_points": sum(q["points"] for q in validated)}
-
-        except json.JSONDecodeError as e:
-            log.warning(f"Attempt {attempt}: GPT returned invalid JSON — {e}")
-            if attempt == MAX_RETRIES:
-                raise HTTPException(status_code=502, detail="AI returned malformed response after 3 attempts. Please try again.")
-
-        except ValueError as e:
-            log.warning(f"Attempt {attempt}: Validation failed — {e}")
-            if attempt == MAX_RETRIES:
-                raise HTTPException(status_code=502, detail=f"Could not generate valid questions: {e}")
-
-        except Exception as e:
-            log.error(f"Attempt {attempt}: Unexpected error — {e}")
-            if attempt == MAX_RETRIES:
-                raise HTTPException(status_code=500, detail="Question generation failed. Please try again.")
->>>>>>> f6760fc (initial commit)
+    }

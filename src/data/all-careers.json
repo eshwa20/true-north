@@ -1,0 +1,106 @@
+{
+  "careers": [
+    {"id":"tech1","title":"Software Developer","category":"Technology","skills":["Programming","Problem Solving"],"salary":"$70k-$150k","growth":"22%"},
+    {"id":"tech2","title":"Frontend Developer","category":"Technology","skills":["HTML/CSS","JavaScript","React"],"salary":"$65k-$130k","growth":"16%"},
+    {"id":"tech3","title":"Backend Developer","category":"Technology","skills":["Python","Java","Databases"],"salary":"$75k-$155k","growth":"22%"},
+    {"id":"tech4","title":"Full-Stack Developer","category":"Technology","skills":["Frontend","Backend","DevOps"],"salary":"$80k-$160k","growth":"22%"},
+    {"id":"tech5","title":"Mobile App Developer","category":"Technology","skills":["iOS","Android","React Native"],"salary":"$70k-$140k","growth":"20%"},
+    {"id":"tech6","title":"Data Scientist","category":"Technology","skills":["Python","Statistics","ML"],"salary":"$85k-$165k","growth":"36%"},
+    {"id":"tech7","title":"Data Analyst","category":"Technology","skills":["SQL","Excel","Visualization"],"salary":"$60k-$120k","growth":"25%"},
+    {"id":"tech8","title":"ML Engineer","category":"Technology","skills":["Python","TensorFlow","Deep Learning"],"salary":"$100k-$180k","growth":"35%"},
+    {"id":"tech9","title":"AI Engineer","category":"Technology","skills":["Python","NLP","Computer Vision"],"salary":"$100k-$180k","growth":"35%"},
+    {"id":"tech10","title":"Cybersecurity Analyst","category":"Technology","skills":["Network Security","Risk Assessment"],"salary":"$70k-$130k","growth":"32%"},
+    {"id":"tech11","title":"Cloud Architect","category":"Technology","skills":["AWS","Azure","GCP"],"salary":"$120k-$200k","growth":"15%"},
+    {"id":"tech12","title":"DevOps Engineer","category":"Technology","skills":["CI/CD","Docker","Kubernetes"],"salary":"$90k-$150k","growth":"15%"},
+    {"id":"tech13","title":"Blockchain Developer","category":"Technology","skills":["Solidity","Web3","Smart Contracts"],"salary":"$80k-$160k","growth":"20%"},
+    {"id":"tech14","title":"Game Developer","category":"Technology","skills":["Unity","Unreal","C++"],"salary":"$60k-$130k","growth":"10%"},
+    {"id":"tech15","title":"QA Engineer","category":"Technology","skills":["Testing","Automation","Selenium"],"salary":"$55k-$100k","growth":"9%"},
+
+    {"id":"design1","title":"Graphic Designer","category":"Design","skills":["Adobe Suite","Typography"],"salary":"$45k-$85k","growth":"3%"},
+    {"id":"design2","title":"UX/UI Designer","category":"Design","skills":["Figma","User Research"],"salary":"$65k-$130k","growth":"16%"},
+    {"id":"design3","title":"Product Designer","category":"Design","skills":["UX","UI","Prototyping"],"salary":"$75k-$140k","growth":"10%"},
+    {"id":"design4","title":"Illustrator","category":"Design","skills":["Drawing","Digital Art"],"salary":"$35k-$75k","growth":"6%"},
+    {"id":"design5","title":"Animator","category":"Design","skills":["3D Modeling","Motion"],"salary":"$50k-$100k","growth":"8%"},
+    {"id":"design6","title":"Fashion Designer","category":"Design","skills":["Sketching","Textiles"],"salary":"$45k-$120k","growth":"3%"},
+    {"id":"design7","title":"Interior Designer","category":"Design","skills":["Space Planning","CAD"],"salary":"$45k-$90k","growth":"4%"},
+    {"id":"design8","title":"Art Director","category":"Design","skills":["Creative Direction","Leadership"],"salary":"$70k-$140k","growth":"4%"},
+    {"id":"design9","title":"Motion Designer","category":"Design","skills":["After Effects","Animation"],"salary":"$55k-$110k","growth":"12%"},
+    {"id":"design10","title":"Brand Designer","category":"Design","skills":["Branding","Typography","Strategy"],"salary":"$50k-$100k","growth":"8%"},
+
+    {"id":"health1","title":"Doctor","category":"Healthcare","skills":["Diagnosis","Patient Care"],"salary":"$150k-$350k","growth":"3%"},
+    {"id":"health2","title":"Surgeon","category":"Healthcare","skills":["Surgery","Anatomy"],"salary":"$250k-$500k","growth":"3%"},
+    {"id":"health3","title":"Nurse","category":"Healthcare","skills":["Patient Care","Medication"],"salary":"$60k-$110k","growth":"6%"},
+    {"id":"health4","title":"Pharmacist","category":"Healthcare","skills":["Pharmacology","Patient Counseling"],"salary":"$100k-$150k","growth":"3%"},
+    {"id":"health5","title":"Dentist","category":"Healthcare","skills":["Dental Procedures","Diagnosis"],"salary":"$120k-$250k","growth":"4%"},
+    {"id":"health6","title":"Physical Therapist","category":"Healthcare","skills":["Rehabilitation","Anatomy"],"salary":"$70k-$100k","growth":"15%"},
+    {"id":"health7","title":"Psychiatrist","category":"Healthcare","skills":["Psychiatry","Therapy"],"salary":"$180k-$300k","growth":"9%"},
+    {"id":"health8","title":"Veterinarian","category":"Healthcare","skills":["Animal Care","Surgery"],"salary":"$80k-$150k","growth":"6%"},
+    {"id":"health9","title":"Radiologist","category":"Healthcare","skills":["Medical Imaging","Diagnosis"],"salary":"$200k-$400k","growth":"7%"},
+    {"id":"health10","title":"Occupational Therapist","category":"Healthcare","skills":["Rehabilitation","Patient Care"],"salary":"$65k-$100k","growth":"14%"},
+
+    {"id":"biz1","title":"Product Manager","category":"Business","skills":["Strategy","Communication"],"salary":"$90k-$160k","growth":"10%"},
+    {"id":"biz2","title":"Marketing Manager","category":"Business","skills":["Strategy","Analytics"],"salary":"$60k-$120k","growth":"10%"},
+    {"id":"biz3","title":"Financial Analyst","category":"Business","skills":["Excel","Financial Modeling"],"salary":"$55k-$110k","growth":"9%"},
+    {"id":"biz4","title":"Entrepreneur","category":"Business","skills":["Leadership","Strategy"],"salary":"Variable","growth":"N/A"},
+    {"id":"biz5","title":"Management Consultant","category":"Business","skills":["Problem Solving","Communication"],"salary":"$80k-$170k","growth":"11%"},
+    {"id":"biz6","title":"HR Manager","category":"Business","skills":["People Management","Policy"],"salary":"$60k-$120k","growth":"7%"},
+    {"id":"biz7","title":"Sales Manager","category":"Business","skills":["Negotiation","Leadership"],"salary":"$70k-$140k","growth":"5%"},
+    {"id":"biz8","title":"Operations Manager","category":"Business","skills":["Operations","Efficiency"],"salary":"$65k-$130k","growth":"6%"},
+
+    {"id":"edu1","title":"Teacher","category":"Education","skills":["Teaching","Classroom Management"],"salary":"$40k-$80k","growth":"4%"},
+    {"id":"edu2","title":"Professor","category":"Education","skills":["Research","Teaching"],"salary":"$70k-$150k","growth":"5%"},
+    {"id":"edu3","title":"School Counselor","category":"Education","skills":["Counseling","Career Guidance"],"salary":"$45k-$80k","growth":"5%"},
+    {"id":"edu4","title":"Corporate Trainer","category":"Education","skills":["Training","Communication"],"salary":"$50k-$90k","growth":"9%"},
+    {"id":"edu5","title":"EdTech Specialist","category":"Education","skills":["Technology","Curriculum Design"],"salary":"$55k-$100k","growth":"12%"},
+
+    {"id":"media1","title":"Journalist","category":"Media","skills":["Writing","Research"],"salary":"$35k-$80k","growth":"-3%"},
+    {"id":"media2","title":"Content Creator","category":"Media","skills":["Video Editing","Social Media"],"salary":"Variable","growth":"N/A"},
+    {"id":"media3","title":"Film Director","category":"Media","skills":["Directing","Storytelling"],"salary":"$60k-$200k","growth":"5%"},
+    {"id":"media4","title":"Podcast Producer","category":"Media","skills":["Audio Editing","Storytelling"],"salary":"$40k-$80k","growth":"15%"},
+    {"id":"media5","title":"Public Relations Specialist","category":"Media","skills":["Communication","Writing"],"salary":"$45k-$85k","growth":"8%"},
+
+    {"id":"trade1","title":"Electrician","category":"Skilled Trades","skills":["Wiring","Safety"],"salary":"$45k-$90k","growth":"7%"},
+    {"id":"trade2","title":"Plumber","category":"Skilled Trades","skills":["Pipe Fitting","Diagnostics"],"salary":"$45k-$90k","growth":"2%"},
+    {"id":"trade3","title":"Welder","category":"Skilled Trades","skills":["Welding","Metal Fabrication"],"salary":"$35k-$70k","growth":"3%"},
+    {"id":"trade4","title":"HVAC Technician","category":"Skilled Trades","skills":["Heating","Cooling","Repair"],"salary":"$40k-$75k","growth":"13%"},
+    {"id":"trade5","title":"Carpenter","category":"Skilled Trades","skills":["Woodworking","Construction"],"salary":"$35k-$65k","growth":"2%"},
+
+    {"id":"law1","title":"Lawyer","category":"Legal","skills":["Legal Research","Argumentation"],"salary":"$80k-$200k","growth":"8%"},
+    {"id":"law2","title":"Judge","category":"Legal","skills":["Legal Knowledge","Impartiality"],"salary":"$120k-$200k","growth":"3%"},
+    {"id":"law3","title":"Paralegal","category":"Legal","skills":["Legal Research","Documentation"],"salary":"$40k-$75k","growth":"12%"},
+
+    {"id":"sci1","title":"Research Scientist","category":"Science","skills":["Research Methods","Data Analysis"],"salary":"$70k-$140k","growth":"8%"},
+    {"id":"sci2","title":"Marine Biologist","category":"Science","skills":["Research","Diving"],"salary":"$40k-$80k","growth":"5%"},
+    {"id":"sci3","title":"Environmental Scientist","category":"Science","skills":["Research","Field Work"],"salary":"$55k-$100k","growth":"8%"},
+    {"id":"sci4","title":"Astronomer","category":"Science","skills":["Data Analysis","Physics"],"salary":"$80k-$150k","growth":"5%"},
+
+    {"id":"sport1","title":"Athlete","category":"Sports","skills":["Physical Fitness","Discipline"],"salary":"Variable","growth":"N/A"},
+    {"id":"sport2","title":"Coach","category":"Sports","skills":["Leadership","Strategy"],"salary":"$30k-$100k","growth":"12%"},
+    {"id":"sport3","title":"Sports Medicine Physician","category":"Sports","skills":["Sports Medicine","Rehabilitation"],"salary":"$180k-$300k","growth":"5%"},
+
+    {"id":"agri1","title":"Farmer","category":"Agriculture","skills":["Crop Management","Livestock"],"salary":"Variable","growth":"-1%"},
+    {"id":"agri2","title":"Agronomist","category":"Agriculture","skills":["Soil Science","Crop Science"],"salary":"$50k-$90k","growth":"5%"},
+
+    {"id":"hosp1","title":"Chef","category":"Hospitality","skills":["Cooking","Menu Planning"],"salary":"$35k-$85k","growth":"5%"},
+    {"id":"hosp2","title":"Hotel Manager","category":"Hospitality","skills":["Management","Customer Service"],"salary":"$50k-$100k","growth":"4%"},
+    {"id":"hosp3","title":"Event Planner","category":"Hospitality","skills":["Organization","Budgeting"],"salary":"$40k-$70k","growth":"7%"},
+
+    {"id":"real1","title":"Real Estate Agent","category":"Real Estate","skills":["Sales","Negotiation"],"salary":"$30k-$100k+","growth":"5%"},
+    {"id":"real2","title":"Property Manager","category":"Real Estate","skills":["Management","Maintenance"],"salary":"$40k-$80k","growth":"3%"},
+    {"id":"real3","title":"Architect","category":"Real Estate","skills":["AutoCAD","Building Codes"],"salary":"$55k-$120k","growth":"5%"},
+
+    {"id":"gov1","title":"Diplomat","category":"Government","skills":["Negotiation","Languages"],"salary":"$60k-$150k","growth":"5%"},
+    {"id":"gov2","title":"Urban Planner","category":"Government","skills":["Planning","Policy"],"salary":"$55k-$100k","growth":"4%"},
+    {"id":"gov3","title":"Firefighter","category":"Government","skills":["Firefighting","First Aid"],"salary":"$40k-$80k","growth":"4%"},
+
+    {"id":"soc1","title":"Social Worker","category":"Social Services","skills":["Counseling","Case Management"],"salary":"$40k-$70k","growth":"9%"},
+    {"id":"soc2","title":"Therapist","category":"Social Services","skills":["Therapy","Listening"],"salary":"$45k-$85k","growth":"15%"},
+    {"id":"soc3","title":"Nonprofit Director","category":"Social Services","skills":["Leadership","Fundraising"],"salary":"$50k-$100k","growth":"5%"},
+    
+    {"id":"fin1","title":"Investment Banker","category":"Finance","skills":["Financial Modeling","Deal Making"],"salary":"$100k-$300k","growth":"5%"},
+    {"id":"fin2","title":"CPA","category":"Finance","skills":["Accounting","Tax"],"salary":"$55k-$120k","growth":"4%"},
+    {"id":"fin3","title":"Actuary","category":"Finance","skills":["Statistics","Risk Assessment"],"salary":"$80k-$180k","growth":"21%"},
+    {"id":"fin4","title":"Quantitative Analyst","category":"Finance","skills":["Python","Statistics","Finance"],"salary":"$100k-$200k","growth":"15%"},
+    {"id":"fin5","title":"Financial Advisor","category":"Finance","skills":["Planning","Investment"],"salary":"$50k-$150k","growth":"13%"}
+  ]
+}
